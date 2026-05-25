@@ -12,12 +12,12 @@
   <style>
   /* ─── Variables ─── */
   :root {
-    --tq:       #0CB8B3;
-    --tq2:      #0ED6D0;
-    --tq-dim:   rgba(12,184,179,.12);
-    --tq-glow:  rgba(12,184,179,.35);
-    --ink:      #08151F;
-    --ink2:     #152536;
+    --tq:       #85d6d0;
+    --tq2:      #9de0db;
+    --tq-dim:   rgba(133,214,208,.12);
+    --tq-glow:  rgba(133,214,208,.35);
+    --ink:      #071516;
+    --ink2:     #0D2828;
     --mist:     #637483;
     --fog:      #9CAABB;
     --pale:     #F3F6F8;
@@ -91,13 +91,13 @@
   }
   .hero-bg {
     position:absolute; inset:0; z-index:0;
-    background: linear-gradient(135deg, #08151F 0%, #0C2233 35%, #083430 65%, #0A4040 85%, #0CB8B3 160%);
+    background: linear-gradient(135deg, #071516 0%, #0C2020 35%, #0D2E2C 65%, #144848 85%, #85d6d0 160%);
   }
   .hero-grid {
     position:absolute; inset:0; z-index:1;
     background-image:
-      linear-gradient(rgba(12,184,179,.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(12,184,179,.06) 1px, transparent 1px);
+      linear-gradient(rgba(133,214,208,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(133,214,208,.06) 1px, transparent 1px);
     background-size: 72px 72px;
     animation: gridMove 20s linear infinite;
   }
@@ -105,7 +105,7 @@
   .hero-glow {
     position:absolute; z-index:1;
     width:600px; height:600px; border-radius:50%;
-    background: radial-gradient(circle, rgba(12,184,179,.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(133,214,208,.18) 0%, transparent 70%);
     top:50%; left:55%; transform:translate(-50%,-50%);
     animation: glowPulse 4s ease-in-out infinite alternate;
   }
@@ -121,7 +121,7 @@
   }
   .hero-chip {
     display:inline-flex; align-items:center; gap:8px;
-    border:1px solid rgba(12,184,179,.5); border-radius:40px;
+    border:1px solid rgba(133,214,208,.5); border-radius:40px;
     padding:7px 18px; font-size:11px; color:rgba(255,255,255,.8);
     letter-spacing:.14em; margin-bottom:40px; width:fit-content;
     animation: fadeSlideUp .8s var(--ease2) .2s both;
@@ -192,12 +192,12 @@
   }
   .hero-sim-svg {
     width:100%; height:auto;
-    filter: drop-shadow(0 0 40px rgba(12,184,179,.15));
+    filter: drop-shadow(0 0 40px rgba(133,214,208,.15));
     animation: fadeSlideUp .9s var(--ease2) .5s both;
   }
   .hero-tag {
     position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
-    background:rgba(12,184,179,.15); border:1px solid rgba(12,184,179,.4);
+    background:rgba(133,214,208,.15); border:1px solid rgba(133,214,208,.4);
     backdrop-filter:blur(12px); color:white; padding:10px 24px;
     border-radius:40px; font-size:11px; letter-spacing:.18em; white-space:nowrap;
     display:flex; align-items:center; gap:8px;
@@ -236,19 +236,19 @@
   .concept-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:72px; }
   .concept-card {
     border-radius:4px; overflow:hidden; position:relative;
-    background:linear-gradient(145deg, #08151F 0%, #0C2233 50%, #083430 80%, #0CB8B3 140%);
+    background:linear-gradient(145deg, #071516 0%, #0C2020 50%, #0D2E2C 80%, #85d6d0 140%);
     display:flex; align-items:center; justify-content:center; height:500px;
   }
   .concept-card-grid {
     position:absolute; inset:0;
     background-image:
-      linear-gradient(rgba(12,184,179,.09) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(12,184,179,.09) 1px, transparent 1px);
+      linear-gradient(rgba(133,214,208,.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(133,214,208,.09) 1px, transparent 1px);
     background-size:36px 36px;
   }
   .concept-card-glow {
     position:absolute; width:300px; height:300px; border-radius:50%;
-    background:radial-gradient(circle, rgba(12,184,179,.2) 0%, transparent 70%);
+    background:radial-gradient(circle, rgba(133,214,208,.2) 0%, transparent 70%);
     top:50%; left:50%; transform:translate(-50%,-50%);
   }
   .concept-icon-wrap { position:relative; z-index:2; }
@@ -264,11 +264,11 @@
     border:1px solid rgba(0,0,0,.06);
     transition: border-color .3s, box-shadow .3s, transform .3s;
   }
-  .feat:hover { border-color:var(--tq); box-shadow:0 8px 32px rgba(12,184,179,.1); transform:translateX(4px); }
+  .feat:hover { border-color:var(--tq); box-shadow:0 8px 32px rgba(133,214,208,.1); transform:translateX(4px); }
   .feat-ic {
     width:44px; height:44px; flex-shrink:0; border-radius:2px;
     background:var(--tq-dim); display:flex; align-items:center; justify-content:center;
-    border:1px solid rgba(12,184,179,.2); color:var(--tq);
+    border:1px solid rgba(133,214,208,.2); color:var(--tq);
   }
   .feat-title { font-size:14.5px; font-weight:500; color:var(--ink); margin-bottom:5px; letter-spacing:.03em; }
   .feat-desc { font-size:13px; color:var(--mist); line-height:1.85; font-weight:300; }
@@ -281,12 +281,12 @@
     background:var(--white); border:1px solid rgba(0,0,0,.09);
     transition:all .3s var(--ease2); cursor:default;
   }
-  .plan:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(12,184,179,.12); border-color:var(--tq); }
+  .plan:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(133,214,208,.12); border-color:var(--tq); }
   .plan.hero-plan {
     background:var(--ink); border-color:var(--ink);
-    box-shadow:0 8px 40px rgba(8,21,31,.3);
+    box-shadow:0 8px 40px rgba(7,21,22,.3);
   }
-  .plan.hero-plan:hover { box-shadow:0 20px 56px rgba(12,184,179,.25); }
+  .plan.hero-plan:hover { box-shadow:0 20px 56px rgba(133,214,208,.25); }
   .plan-top { font-family:var(--serif); font-size:10.5px; letter-spacing:.26em; color:var(--fog); text-transform:uppercase; margin-bottom:20px; }
   .plan.hero-plan .plan-top { color:rgba(255,255,255,.4); }
   .plan-price {
@@ -312,7 +312,7 @@
     border-radius:3px; padding:28px; transition:border-color .3s;
   }
   .sec-pale .sub { background:var(--pale); }
-  .sub:hover { border-color:rgba(12,184,179,.4); }
+  .sub:hover { border-color:rgba(133,214,208,.4); }
   .sub-title {
     font-family:var(--serif); font-size:10px; letter-spacing:.3em;
     color:var(--tq); text-transform:uppercase; margin-bottom:18px;
@@ -336,7 +336,7 @@
   .cp-tags { display:flex; gap:12px; flex-wrap:wrap; }
   .cp-tag {
     padding:12px 20px; border-radius:3px;
-    background:rgba(12,184,179,.12); border:1px solid rgba(12,184,179,.25);
+    background:rgba(133,214,208,.12); border:1px solid rgba(133,214,208,.25);
     text-align:center;
   }
   .cp-tag-v { font-family:var(--serif); font-size:16px; color:var(--tq); font-weight:300; line-height:1.3; }
@@ -367,7 +367,7 @@
   .ai:last-child { border-bottom:none; }
   .ai-ic {
     width:42px; height:42px; flex-shrink:0; border-radius:2px;
-    background:var(--tq-dim); border:1px solid rgba(12,184,179,.2);
+    background:var(--tq-dim); border:1px solid rgba(133,214,208,.2);
     display:flex; align-items:center; justify-content:center;
     color:var(--tq);
   }
@@ -384,8 +384,8 @@
   #cta::before {
     content:''; position:absolute; inset:0;
     background-image:
-      linear-gradient(rgba(12,184,179,.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(12,184,179,.05) 1px, transparent 1px);
+      linear-gradient(rgba(133,214,208,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(133,214,208,.05) 1px, transparent 1px);
     background-size:72px 72px;
   }
   .cta-inner { position:relative; z-index:1; }
@@ -526,59 +526,59 @@
         <!-- GOLFZON simulator HUD illustration -->
         <svg class="hero-sim-svg" viewBox="0 0 380 320" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Screen frame -->
-          <rect x="10" y="10" width="360" height="240" rx="6" stroke="rgba(12,184,179,0.25)" stroke-width="1"/>
+          <rect x="10" y="10" width="360" height="240" rx="6" stroke="rgba(133,214,208,0.25)" stroke-width="1"/>
           <!-- Corner accents -->
-          <path d="M10 52 L10 10 L52 10" stroke="rgba(12,184,179,0.7)" stroke-width="2" fill="none"/>
-          <path d="M328 10 L370 10 L370 52" stroke="rgba(12,184,179,0.7)" stroke-width="2" fill="none"/>
-          <path d="M10 208 L10 250 L52 250" stroke="rgba(12,184,179,0.7)" stroke-width="2" fill="none"/>
-          <path d="M328 250 L370 250 L370 208" stroke="rgba(12,184,179,0.7)" stroke-width="2" fill="none"/>
+          <path d="M10 52 L10 10 L52 10" stroke="rgba(133,214,208,0.7)" stroke-width="2" fill="none"/>
+          <path d="M328 10 L370 10 L370 52" stroke="rgba(133,214,208,0.7)" stroke-width="2" fill="none"/>
+          <path d="M10 208 L10 250 L52 250" stroke="rgba(133,214,208,0.7)" stroke-width="2" fill="none"/>
+          <path d="M328 250 L370 250 L370 208" stroke="rgba(133,214,208,0.7)" stroke-width="2" fill="none"/>
           <!-- Interior HUD grid -->
-          <line x1="10" y1="90" x2="370" y2="90" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
-          <line x1="10" y1="140" x2="370" y2="140" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
-          <line x1="10" y1="190" x2="370" y2="190" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
-          <line x1="100" y1="10" x2="100" y2="250" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
-          <line x1="190" y1="10" x2="190" y2="250" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
-          <line x1="280" y1="10" x2="280" y2="250" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
+          <line x1="10" y1="90" x2="370" y2="90" stroke="rgba(133,214,208,0.07)" stroke-width="1"/>
+          <line x1="10" y1="140" x2="370" y2="140" stroke="rgba(133,214,208,0.07)" stroke-width="1"/>
+          <line x1="10" y1="190" x2="370" y2="190" stroke="rgba(133,214,208,0.07)" stroke-width="1"/>
+          <line x1="100" y1="10" x2="100" y2="250" stroke="rgba(133,214,208,0.07)" stroke-width="1"/>
+          <line x1="190" y1="10" x2="190" y2="250" stroke="rgba(133,214,208,0.07)" stroke-width="1"/>
+          <line x1="280" y1="10" x2="280" y2="250" stroke="rgba(133,214,208,0.07)" stroke-width="1"/>
           <!-- Sky fill -->
-          <path d="M10 10 L370 10 L370 190 Q310 200 190 196 Q80 192 10 208 Z" fill="rgba(12,184,179,0.03)"/>
+          <path d="M10 10 L370 10 L370 190 Q310 200 190 196 Q80 192 10 208 Z" fill="rgba(133,214,208,0.03)"/>
           <!-- Fairway horizon -->
-          <path d="M10 208 Q80 192 190 196 Q310 200 370 190 L370 250 L10 250 Z" fill="rgba(12,184,179,0.06)"/>
-          <path d="M10 208 Q80 192 190 196 Q310 200 370 190" stroke="rgba(12,184,179,0.22)" stroke-width="1" fill="none"/>
+          <path d="M10 208 Q80 192 190 196 Q310 200 370 190 L370 250 L10 250 Z" fill="rgba(133,214,208,0.06)"/>
+          <path d="M10 208 Q80 192 190 196 Q310 200 370 190" stroke="rgba(133,214,208,0.22)" stroke-width="1" fill="none"/>
           <!-- Ball trajectory arc (dashed) -->
-          <path d="M55 215 Q140 55 340 185" stroke="rgba(12,184,179,0.75)" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+          <path d="M55 215 Q140 55 340 185" stroke="rgba(133,214,208,0.75)" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
           <!-- Ball at tee -->
-          <circle cx="55" cy="215" r="5.5" fill="rgba(12,184,179,0.9)"/>
-          <circle cx="55" cy="215" r="9" stroke="rgba(12,184,179,0.25)" stroke-width="1" fill="none"/>
+          <circle cx="55" cy="215" r="5.5" fill="rgba(133,214,208,0.9)"/>
+          <circle cx="55" cy="215" r="9" stroke="rgba(133,214,208,0.25)" stroke-width="1" fill="none"/>
           <!-- Trajectory waypoints -->
-          <circle cx="130" cy="125" r="3" fill="rgba(12,184,179,0.45)"/>
-          <circle cx="210" cy="82" r="3" fill="rgba(12,184,179,0.5)"/>
-          <circle cx="285" cy="120" r="3" fill="rgba(12,184,179,0.55)"/>
+          <circle cx="130" cy="125" r="3" fill="rgba(133,214,208,0.45)"/>
+          <circle cx="210" cy="82" r="3" fill="rgba(133,214,208,0.5)"/>
+          <circle cx="285" cy="120" r="3" fill="rgba(133,214,208,0.55)"/>
           <!-- Flag -->
-          <line x1="340" y1="185" x2="340" y2="155" stroke="rgba(12,184,179,0.8)" stroke-width="1.5"/>
-          <polygon points="340,155 357,162 340,169" fill="rgba(12,184,179,0.9)"/>
+          <line x1="340" y1="185" x2="340" y2="155" stroke="rgba(133,214,208,0.8)" stroke-width="1.5"/>
+          <polygon points="340,155 357,162 340,169" fill="rgba(133,214,208,0.9)"/>
           <!-- Distance baseline -->
-          <line x1="55" y1="228" x2="340" y2="228" stroke="rgba(12,184,179,0.18)" stroke-width="0.5" stroke-dasharray="3 3"/>
-          <text x="197" y="240" font-size="9" fill="rgba(12,184,179,0.45)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.12em">248 yds</text>
+          <line x1="55" y1="228" x2="340" y2="228" stroke="rgba(133,214,208,0.18)" stroke-width="0.5" stroke-dasharray="3 3"/>
+          <text x="197" y="240" font-size="9" fill="rgba(133,214,208,0.45)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.12em">248 yds</text>
           <!-- Data overlay — top left -->
-          <rect x="18" y="18" width="88" height="34" rx="2" fill="rgba(8,21,31,0.7)" stroke="rgba(12,184,179,0.2)" stroke-width="0.5"/>
-          <text x="62" y="31" font-size="7.5" fill="rgba(12,184,179,0.55)" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="0.1em">BALL SPEED</text>
-          <text x="62" y="44" font-size="11" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.05em">152 mph</text>
+          <rect x="18" y="18" width="88" height="34" rx="2" fill="rgba(7,21,22,0.7)" stroke="rgba(133,214,208,0.2)" stroke-width="0.5"/>
+          <text x="62" y="31" font-size="7.5" fill="rgba(133,214,208,0.55)" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="0.1em">BALL SPEED</text>
+          <text x="62" y="44" font-size="11" fill="rgba(133,214,208,0.95)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.05em">152 mph</text>
           <!-- Data overlay — top right -->
-          <rect x="274" y="18" width="88" height="34" rx="2" fill="rgba(8,21,31,0.7)" stroke="rgba(12,184,179,0.2)" stroke-width="0.5"/>
-          <text x="318" y="31" font-size="7.5" fill="rgba(12,184,179,0.55)" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="0.1em">CARRY DIST</text>
-          <text x="318" y="44" font-size="11" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.05em">248 yds</text>
+          <rect x="274" y="18" width="88" height="34" rx="2" fill="rgba(7,21,22,0.7)" stroke="rgba(133,214,208,0.2)" stroke-width="0.5"/>
+          <text x="318" y="31" font-size="7.5" fill="rgba(133,214,208,0.55)" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="0.1em">CARRY DIST</text>
+          <text x="318" y="44" font-size="11" fill="rgba(133,214,208,0.95)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.05em">248 yds</text>
           <!-- Bottom stats bar -->
-          <rect x="10" y="258" width="360" height="52" rx="3" fill="rgba(8,21,31,0.85)" stroke="rgba(12,184,179,0.18)" stroke-width="0.5"/>
-          <text x="76" y="274" font-size="7" fill="rgba(12,184,179,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">CLUB SPEED</text>
-          <text x="76" y="288" font-size="12" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia,serif">108 mph</text>
-          <line x1="148" y1="264" x2="148" y2="300" stroke="rgba(12,184,179,0.12)" stroke-width="0.5"/>
-          <text x="190" y="274" font-size="7" fill="rgba(12,184,179,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">LAUNCH ANGLE</text>
-          <text x="190" y="288" font-size="12" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia,serif">14.2°</text>
-          <line x1="232" y1="264" x2="232" y2="300" stroke="rgba(12,184,179,0.12)" stroke-width="0.5"/>
-          <text x="305" y="274" font-size="7" fill="rgba(12,184,179,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">BACK SPIN</text>
-          <text x="305" y="288" font-size="12" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia,serif">2,840 rpm</text>
+          <rect x="10" y="258" width="360" height="52" rx="3" fill="rgba(7,21,22,0.85)" stroke="rgba(133,214,208,0.18)" stroke-width="0.5"/>
+          <text x="76" y="274" font-size="7" fill="rgba(133,214,208,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">CLUB SPEED</text>
+          <text x="76" y="288" font-size="12" fill="rgba(133,214,208,0.95)" text-anchor="middle" font-family="Georgia,serif">108 mph</text>
+          <line x1="148" y1="264" x2="148" y2="300" stroke="rgba(133,214,208,0.12)" stroke-width="0.5"/>
+          <text x="190" y="274" font-size="7" fill="rgba(133,214,208,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">LAUNCH ANGLE</text>
+          <text x="190" y="288" font-size="12" fill="rgba(133,214,208,0.95)" text-anchor="middle" font-family="Georgia,serif">14.2°</text>
+          <line x1="232" y1="264" x2="232" y2="300" stroke="rgba(133,214,208,0.12)" stroke-width="0.5"/>
+          <text x="305" y="274" font-size="7" fill="rgba(133,214,208,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">BACK SPIN</text>
+          <text x="305" y="288" font-size="12" fill="rgba(133,214,208,0.95)" text-anchor="middle" font-family="Georgia,serif">2,840 rpm</text>
           <!-- GOLFZON watermark -->
-          <text x="370" y="315" font-size="8" fill="rgba(12,184,179,0.25)" text-anchor="end" font-family="Arial,sans-serif" letter-spacing="0.18em">GOLFZON</text>
+          <text x="370" y="315" font-size="8" fill="rgba(133,214,208,0.25)" text-anchor="end" font-family="Arial,sans-serif" letter-spacing="0.18em">GOLFZON</text>
         </svg>
         <div class="hero-tag">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -629,17 +629,17 @@
       <div class="concept-card-grid"></div>
       <div class="concept-card-glow"></div>
       <div class="concept-icon-wrap">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 40px rgba(12,184,179,.6))">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 40px rgba(133,214,208,.6))">
           <!-- Flag pole -->
-          <line x1="58" y1="20" x2="58" y2="96" stroke="rgba(12,184,179,0.9)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="58" y1="20" x2="58" y2="96" stroke="rgba(133,214,208,0.9)" stroke-width="3" stroke-linecap="round"/>
           <!-- Flag -->
-          <path d="M58 20 L92 34 L58 48 Z" fill="rgba(12,184,179,0.85)"/>
+          <path d="M58 20 L92 34 L58 48 Z" fill="rgba(133,214,208,0.85)"/>
           <!-- Hole/cup -->
-          <ellipse cx="58" cy="96" rx="22" ry="7" stroke="rgba(12,184,179,0.4)" stroke-width="1.5" fill="rgba(12,184,179,0.08)"/>
+          <ellipse cx="58" cy="96" rx="22" ry="7" stroke="rgba(133,214,208,0.4)" stroke-width="1.5" fill="rgba(133,214,208,0.08)"/>
           <!-- Ball -->
-          <circle cx="32" cy="96" r="7" fill="rgba(12,184,179,0.75)"/>
+          <circle cx="32" cy="96" r="7" fill="rgba(133,214,208,0.75)"/>
           <!-- Trajectory hint -->
-          <path d="M20 76 Q30 56 44 52" stroke="rgba(12,184,179,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+          <path d="M20 76 Q30 56 44 52" stroke="rgba(133,214,208,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
         </svg>
       </div>
       <div class="concept-label">Nala Golf Studio</div>
