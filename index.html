@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NalaGOLF | Simulation Golf Studio — 千葉市若葉区</title>
+  <meta name="description" content="千葉市若葉区のシミュレーションゴルフスタジオ。GOLFZON製最新シミュレーターで24時間365日通い放題。月額5,000円〜。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ─── Variables ─── */
+  :root {
+    --tq:       #0CB8B3;
+    --tq2:      #0ED6D0;
+    --tq-dim:   rgba(12,184,179,.12);
+    --tq-glow:  rgba(12,184,179,.35);
+    --ink:      #08151F;
+    --ink2:     #152536;
+    --mist:     #637483;
+    --fog:      #9CAABB;
+    --pale:     #F3F6F8;
+    --white:    #FFFFFF;
+    --serif:    'Cormorant Garamond', 'Georgia', serif;
+    --sans:     'Noto Sans JP', sans-serif;
+    --ease:     cubic-bezier(.22,.68,0,1.2);
+    --ease2:    cubic-bezier(.4,0,.2,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { font-family: var(--sans); background: var(--white); color: var(--ink); overflow-x: hidden; font-weight: 300; }
+
+  /* ─── Scroll Reveal ─── */
+  .reveal { opacity:0; transform:translateY(28px); transition: opacity .8s var(--ease2), transform .8s var(--ease2); }
+  .reveal.in { opacity:1; transform:translateY(0); }
+  .reveal-left { opacity:0; transform:translateX(-32px); transition: opacity .8s var(--ease2), transform .8s var(--ease2); }
+  .reveal-left.in { opacity:1; transform:translateX(0); }
+  .reveal-right { opacity:0; transform:translateX(32px); transition: opacity .8s var(--ease2), transform .8s var(--ease2); }
+  .reveal-right.in { opacity:1; transform:translateX(0); }
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+  /* ─── Nav ─── */
+  #nav {
+    position: fixed; top:0; left:0; right:0; z-index:300;
+    height:68px; padding:0 52px;
+    display:flex; align-items:center; justify-content:space-between;
+    transition: background .4s, box-shadow .4s;
+  }
+  #nav.solid {
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 1px 0 rgba(0,0,0,.07);
+  }
+  #nav.dark-nav { background: transparent; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo-mark {
+    width:32px; height:32px; border-radius:50%;
+    background: var(--tq); display:flex; align-items:center; justify-content:center;
+    font-size:15px; box-shadow: 0 0 16px var(--tq-glow);
+  }
+  .logo-type { font-family:var(--serif); font-size:18px; font-weight:400; letter-spacing:.12em; }
+  .logo-type .hi { color:var(--tq); }
+  .nav-solid .logo-type { color:var(--ink); }
+  .dark-nav .logo-type { color:var(--white); }
+  .nav-items { display:flex; align-items:center; gap:36px; list-style:none; }
+  .nav-items a {
+    font-size:12px; font-weight:400; letter-spacing:.12em;
+    text-decoration:none; transition:color .2s; position:relative;
+  }
+  #nav.solid .nav-items a { color:var(--mist); }
+  #nav.dark-nav .nav-items a { color:rgba(255,255,255,.6); }
+  .nav-items a:hover { color:var(--tq) !important; }
+  .nav-items a::after {
+    content:''; position:absolute; bottom:-3px; left:0; right:0;
+    height:1px; background:var(--tq); transform:scaleX(0); transition:transform .25s;
+  }
+  .nav-items a:hover::after { transform:scaleX(1); }
+  .nav-btn {
+    background:var(--tq); color:var(--white) !important;
+    padding:9px 22px; border-radius:2px; font-size:12px !important;
+    letter-spacing:.14em !important; transition: background .2s, box-shadow .2s, transform .2s !important;
+  }
+  .nav-btn::after { display:none !important; }
+  .nav-btn:hover { background:var(--tq2) !important; box-shadow:0 4px 20px var(--tq-glow) !important; transform:translateY(-1px) !important; }
+
+  /* ─── Hero ─── */
+  #hero {
+    position:relative; min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    overflow:hidden; padding:0;
+  }
+  .hero-bg {
+    position:absolute; inset:0; z-index:0;
+    background: linear-gradient(135deg, #08151F 0%, #0C2233 35%, #083430 65%, #0A4040 85%, #0CB8B3 160%);
+  }
+  .hero-grid {
+    position:absolute; inset:0; z-index:1;
+    background-image:
+      linear-gradient(rgba(12,184,179,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(12,184,179,.06) 1px, transparent 1px);
+    background-size: 72px 72px;
+    animation: gridMove 20s linear infinite;
+  }
+  @keyframes gridMove { to { background-position: 72px 72px; } }
+  .hero-glow {
+    position:absolute; z-index:1;
+    width:600px; height:600px; border-radius:50%;
+    background: radial-gradient(circle, rgba(12,184,179,.18) 0%, transparent 70%);
+    top:50%; left:55%; transform:translate(-50%,-50%);
+    animation: glowPulse 4s ease-in-out infinite alternate;
+  }
+  @keyframes glowPulse { 0%{opacity:.6;transform:translate(-50%,-50%) scale(1)} 100%{opacity:1;transform:translate(-50%,-50%) scale(1.15)} }
+  .hero-content {
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1fr 1fr;
+    min-height:100vh; padding-top:68px;
+  }
+  .hero-left {
+    display:flex; flex-direction:column; justify-content:center;
+    padding:80px 60px 80px 80px;
+  }
+  .hero-chip {
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid rgba(12,184,179,.5); border-radius:40px;
+    padding:7px 18px; font-size:11px; color:rgba(255,255,255,.8);
+    letter-spacing:.14em; margin-bottom:40px; width:fit-content;
+    animation: fadeSlideUp .8s var(--ease2) .2s both;
+  }
+  .hero-chip-dot {
+    width:6px; height:6px; border-radius:50%;
+    background:var(--tq); animation:blink 2s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .hero-kicker {
+    font-family:var(--serif); font-size:11px; letter-spacing:.4em;
+    color:var(--tq); text-transform:uppercase; margin-bottom:20px;
+    display:flex; align-items:center; gap:16px;
+    animation: fadeSlideUp .8s var(--ease2) .3s both;
+  }
+  .hero-kicker::before { content:''; width:32px; height:1px; background:var(--tq); }
+  .hero-h1 {
+    font-family:var(--serif); font-size:clamp(44px, 5vw, 68px);
+    font-weight:300; line-height:1.15; letter-spacing:.04em;
+    color:var(--white); margin-bottom:28px;
+    animation: fadeSlideUp .9s var(--ease2) .4s both;
+  }
+  .hero-h1 em { font-style:italic; color:var(--tq); }
+  .hero-h1 .thin { font-weight:200; }
+  .hero-lead {
+    font-size:14px; font-weight:300; color:rgba(255,255,255,.55);
+    line-height:2; max-width:380px; margin-bottom:52px;
+    animation: fadeSlideUp .9s var(--ease2) .5s both;
+  }
+  .hero-cta {
+    display:flex; gap:14px; flex-wrap:wrap;
+    animation: fadeSlideUp .9s var(--ease2) .6s both;
+  }
+  .btn-a {
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--tq); color:var(--white);
+    padding:15px 36px; font-size:12.5px; letter-spacing:.18em;
+    text-decoration:none; border-radius:2px;
+    transition: all .3s var(--ease2);
+    font-family:var(--sans);
+  }
+  .btn-a svg { transition: transform .3s; }
+  .btn-a:hover { background:var(--tq2); box-shadow:0 8px 28px var(--tq-glow); transform:translateY(-2px); }
+  .btn-a:hover svg { transform:translateX(4px); }
+  .btn-b {
+    display:inline-block;
+    border:1px solid rgba(255,255,255,.25); color:rgba(255,255,255,.8);
+    padding:15px 36px; font-size:12.5px; letter-spacing:.18em;
+    text-decoration:none; border-radius:2px;
+    transition: all .3s;
+  }
+  .btn-b:hover { border-color:var(--tq); color:var(--tq); transform:translateY(-2px); }
+  .hero-nums {
+    display:flex; gap:40px; margin-top:64px; padding-top:36px;
+    border-top:1px solid rgba(255,255,255,.1);
+    animation: fadeSlideUp .9s var(--ease2) .7s both;
+  }
+  .hero-num-val {
+    font-family:var(--serif); font-size:28px; font-weight:300;
+    color:var(--tq); letter-spacing:.04em;
+  }
+  .hero-num-lbl { font-size:10.5px; color:rgba(255,255,255,.4); letter-spacing:.1em; margin-top:4px; }
+  .hero-right {
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .hero-visual-frame {
+    position:relative; width:360px; height:360px;
+  }
+  .hero-ring {
+    position:absolute; border-radius:50%; border:1px solid;
+    top:50%; left:50%; transform:translate(-50%,-50%);
+  }
+  .ring1 { width:100%; height:100%; border-color:rgba(12,184,179,.2); animation:ringPulse 3s ease-in-out infinite; }
+  .ring2 { width:80%; height:80%; border-color:rgba(12,184,179,.15); animation:ringPulse 3s ease-in-out .5s infinite; }
+  .ring3 { width:60%; height:60%; border-color:rgba(12,184,179,.12); animation:ringPulse 3s ease-in-out 1s infinite; }
+  @keyframes ringPulse {
+    0%,100%{transform:translate(-50%,-50%) scale(1); opacity:.8}
+    50%{transform:translate(-50%,-50%) scale(1.04); opacity:1}
+  }
+  .hero-icon-wrap {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:160px; height:160px; border-radius:50%;
+    background:rgba(12,184,179,.1); border:1px solid rgba(12,184,179,.3);
+    display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(8px);
+  }
+  .hero-icon-main {
+    font-size:64px; filter:drop-shadow(0 0 28px rgba(12,184,179,.7));
+    animation: floatIcon 4s ease-in-out infinite;
+  }
+  @keyframes floatIcon { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .hero-tag {
+    position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
+    background:rgba(12,184,179,.15); border:1px solid rgba(12,184,179,.4);
+    backdrop-filter:blur(12px); color:white; padding:10px 24px;
+    border-radius:40px; font-size:11px; letter-spacing:.18em; white-space:nowrap;
+  }
+
+  @keyframes fadeSlideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ─── Divider strip ─── */
+  .strip {
+    background:var(--ink); padding:40px 80px;
+    display:flex; justify-content:space-around; align-items:center;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .strip-item { text-align:center; }
+  .strip-num {
+    font-family:var(--serif); font-size:36px; font-weight:300;
+    color:var(--tq); letter-spacing:.04em; line-height:1;
+  }
+  .strip-lbl { font-size:11px; color:rgba(255,255,255,.4); letter-spacing:.12em; margin-top:6px; }
+  .strip-div { width:1px; height:48px; background:rgba(255,255,255,.1); }
+
+  /* ─── Common Section ─── */
+  .sec { padding:120px 80px; }
+  .sec-pale { background:var(--pale); }
+  .eyebrow {
+    font-family:var(--serif); font-size:11px; letter-spacing:.38em;
+    color:var(--tq); text-transform:uppercase;
+    display:flex; align-items:center; gap:14px; margin-bottom:20px;
+  }
+  .eyebrow::before { content:''; width:24px; height:1px; background:var(--tq); }
+  .sec-h { font-family:'Noto Serif JP', serif; font-size:clamp(32px,3.5vw,48px); font-weight:300; line-height:1.3; letter-spacing:.04em; }
+  .sec-h em { font-style:italic; color:var(--tq); }
+  .sec-lead { margin-top:18px; font-size:14px; color:var(--mist); line-height:2; font-weight:300; max-width:500px; }
+
+  /* ─── Concept ─── */
+  .concept-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:72px; }
+  .concept-card {
+    border-radius:4px; overflow:hidden; position:relative;
+    background:linear-gradient(145deg, #08151F 0%, #0C2233 50%, #083430 80%, #0CB8B3 140%);
+    display:flex; align-items:center; justify-content:center; height:500px;
+  }
+  .concept-card-grid {
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(12,184,179,.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(12,184,179,.09) 1px, transparent 1px);
+    background-size:36px 36px;
+  }
+  .concept-card-glow {
+    position:absolute; width:300px; height:300px; border-radius:50%;
+    background:radial-gradient(circle, rgba(12,184,179,.2) 0%, transparent 70%);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+  }
+  .concept-icon { position:relative; z-index:2; font-size:96px; filter:drop-shadow(0 0 48px rgba(12,184,179,.65)); }
+  .concept-label {
+    position:absolute; bottom:28px; left:28px; z-index:2;
+    font-family:var(--serif); font-size:11px; letter-spacing:.3em;
+    color:rgba(255,255,255,.5); text-transform:uppercase;
+  }
+  .feats { display:flex; flex-direction:column; gap:32px; }
+  .feat {
+    display:flex; gap:18px; align-items:flex-start;
+    padding:24px; border-radius:3px; background:var(--white);
+    border:1px solid rgba(0,0,0,.06);
+    transition: border-color .3s, box-shadow .3s, transform .3s;
+  }
+  .feat:hover { border-color:var(--tq); box-shadow:0 8px 32px rgba(12,184,179,.1); transform:translateX(4px); }
+  .feat-ic {
+    width:44px; height:44px; flex-shrink:0; border-radius:2px;
+    background:var(--tq-dim); display:flex; align-items:center; justify-content:center;
+    font-size:20px; border:1px solid rgba(12,184,179,.2);
+  }
+  .feat-title { font-size:14.5px; font-weight:500; color:var(--ink); margin-bottom:5px; letter-spacing:.03em; }
+  .feat-desc { font-size:13px; color:var(--mist); line-height:1.85; font-weight:300; }
+
+  /* ─── Pricing ─── */
+  .plans-wrap { margin-top:64px; }
+  .plans-row { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:16px; }
+  .plan {
+    border-radius:3px; padding:28px 20px; position:relative;
+    background:var(--white); border:1px solid rgba(0,0,0,.09);
+    transition:all .3s var(--ease2); cursor:default;
+  }
+  .plan:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(12,184,179,.12); border-color:var(--tq); }
+  .plan.hero-plan {
+    background:var(--ink); border-color:var(--ink);
+    box-shadow:0 8px 40px rgba(8,21,31,.3);
+  }
+  .plan.hero-plan:hover { box-shadow:0 20px 56px rgba(12,184,179,.25); }
+  .plan-top { font-family:var(--serif); font-size:10.5px; letter-spacing:.26em; color:var(--fog); text-transform:uppercase; margin-bottom:20px; }
+  .plan.hero-plan .plan-top { color:rgba(255,255,255,.4); }
+  .plan-price {
+    font-family:var(--serif); font-size:38px; font-weight:300;
+    color:var(--ink); letter-spacing:.02em; line-height:1;
+  }
+  .plan.hero-plan .plan-price { color:var(--tq); }
+  .plan-unit { font-family:var(--sans); font-size:12px; color:var(--fog); font-weight:300; }
+  .plan-time { font-size:11.5px; color:var(--mist); margin-top:14px; line-height:1.75; }
+  .plan.hero-plan .plan-time { color:rgba(255,255,255,.5); }
+  .plan-who { font-size:10.5px; color:var(--fog); margin-top:10px; padding-top:10px; border-top:1px solid rgba(0,0,0,.07); }
+  .plan.hero-plan .plan-who { border-top-color:rgba(255,255,255,.1); color:rgba(255,255,255,.35); }
+  .plan-cp { font-size:10.5px; color:var(--tq); margin-top:7px; font-weight:400; }
+  .plan-pip {
+    position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+    background:var(--tq); color:white; font-size:9px; letter-spacing:.14em;
+    padding:3px 12px; border-radius:0 0 3px 3px; white-space:nowrap;
+  }
+
+  .sub-plans { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .sub {
+    background:var(--white); border:1px solid rgba(0,0,0,.08);
+    border-radius:3px; padding:28px; transition:border-color .3s;
+  }
+  .sec-pale .sub { background:var(--pale); }
+  .sub:hover { border-color:rgba(12,184,179,.4); }
+  .sub-title {
+    font-family:var(--serif); font-size:10px; letter-spacing:.3em;
+    color:var(--tq); text-transform:uppercase; margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .sub-title::before { content:''; width:18px; height:1px; background:var(--tq); }
+  .pr { display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-bottom:1px solid rgba(0,0,0,.06); font-size:13px; }
+  .pr:last-child { border-bottom:none; }
+  .pr-l { color:var(--mist); font-weight:300; }
+  .pr-n { font-size:10px; color:var(--fog); margin-top:1px; }
+  .pr-v { font-family:var(--serif); font-size:18px; color:var(--ink); font-weight:300; }
+  .pr-v.hi { color:var(--tq); }
+
+  .cp-block {
+    margin-top:48px; padding:40px 52px;
+    background:var(--ink); border-radius:3px;
+    display:flex; align-items:center; justify-content:space-between; gap:32px;
+  }
+  .cp-h { font-family:var(--serif); font-size:22px; font-weight:300; color:white; letter-spacing:.06em; margin-bottom:6px; }
+  .cp-p { font-size:12px; color:rgba(255,255,255,.45); font-weight:300; }
+  .cp-tags { display:flex; gap:12px; flex-wrap:wrap; }
+  .cp-tag {
+    padding:12px 20px; border-radius:3px;
+    background:rgba(12,184,179,.12); border:1px solid rgba(12,184,179,.25);
+    text-align:center;
+  }
+  .cp-tag-v { font-family:var(--serif); font-size:16px; color:var(--tq); font-weight:300; line-height:1.3; }
+  .cp-tag-l { font-size:10px; color:rgba(255,255,255,.4); margin-top:3px; letter-spacing:.1em; }
+
+  /* ─── Rules ─── */
+  .rules { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:64px; }
+  .rule {
+    background:var(--white); border-radius:3px; padding:28px 26px 28px 22px;
+    border-left:2px solid var(--tq); transition:box-shadow .3s, transform .3s;
+  }
+  .rule:hover { box-shadow:0 8px 32px rgba(0,0,0,.07); transform:translateY(-3px); }
+  .rule-t { font-size:13.5px; font-weight:500; color:var(--ink); margin-bottom:10px; display:flex; align-items:center; gap:9px; }
+  .rule-t span { font-size:18px; }
+  .rule-d { font-size:12.5px; color:var(--mist); line-height:1.9; font-weight:300; }
+
+  /* ─── Access ─── */
+  .access-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-top:64px; }
+  .map-box {
+    height:400px; border-radius:3px; overflow:hidden; position:relative;
+    background:linear-gradient(135deg, #D0EFEE 0%, #9EDFDC 100%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .map-grid {
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(12,184,179,.2) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(12,184,179,.2) 1px, transparent 1px);
+    background-size:28px 28px;
+  }
+  .map-pin { position:relative; z-index:2; font-size:52px; filter:drop-shadow(0 4px 14px rgba(0,0,0,.15)); }
+  .map-tag {
+    position:absolute; bottom:20px; left:20px;
+    background:var(--tq); color:white; padding:7px 16px;
+    border-radius:2px; font-size:11.5px; letter-spacing:.12em;
+    box-shadow:0 4px 14px var(--tq-glow);
+  }
+  .access-items { display:flex; flex-direction:column; gap:0; }
+  .ai {
+    display:flex; gap:18px; padding:24px 0;
+    border-bottom:1px solid rgba(0,0,0,.07); transition:background .2s;
+  }
+  .ai:last-child { border-bottom:none; }
+  .ai-ic {
+    width:42px; height:42px; flex-shrink:0; border-radius:2px;
+    background:var(--tq-dim); border:1px solid rgba(12,184,179,.2);
+    display:flex; align-items:center; justify-content:center; font-size:18px;
+  }
+  .ai-l { font-size:10px; letter-spacing:.18em; color:var(--tq); text-transform:uppercase; margin-bottom:4px; }
+  .ai-v { font-size:14.5px; color:var(--ink); font-weight:400; line-height:1.65; }
+  .ai-n { font-size:11.5px; color:var(--mist); margin-top:3px; font-weight:300; }
+
+  /* ─── CTA ─── */
+  #cta {
+    padding:128px 80px; text-align:center;
+    background:linear-gradient(140deg, var(--ink) 0%, #0A2E2C 100%);
+    position:relative; overflow:hidden;
+  }
+  #cta::before {
+    content:''; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(12,184,179,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(12,184,179,.05) 1px, transparent 1px);
+    background-size:72px 72px;
+  }
+  .cta-inner { position:relative; z-index:1; }
+  .cta-eye { font-family:var(--serif); font-size:10.5px; letter-spacing:.4em; color:var(--tq); text-transform:uppercase; margin-bottom:28px; }
+  .cta-h {
+    font-family:var(--serif); font-size:clamp(36px,4.5vw,60px);
+    font-weight:300; color:var(--white); line-height:1.25; letter-spacing:.04em; margin-bottom:24px;
+  }
+  .cta-h em { font-style:italic; color:var(--tq); }
+  .cta-p { font-size:14px; color:rgba(255,255,255,.5); line-height:2; max-width:440px; margin:0 auto 52px; font-weight:300; }
+  .cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-c {
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--tq); color:white; padding:17px 48px;
+    font-size:12.5px; letter-spacing:.2em; text-decoration:none;
+    border-radius:2px; transition:all .3s; font-family:var(--sans);
+  }
+  .btn-c:hover { background:var(--tq2); box-shadow:0 12px 36px var(--tq-glow); transform:translateY(-2px); }
+  .btn-d {
+    display:inline-block;
+    border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.7);
+    padding:17px 48px; font-size:12.5px; letter-spacing:.2em;
+    text-decoration:none; border-radius:2px; transition:all .3s;
+  }
+  .btn-d:hover { border-color:var(--tq); color:var(--tq); transform:translateY(-2px); }
+
+  /* ─── Footer ─── */
+  footer { background:#05101A; padding:64px 80px 36px; }
+  .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.07); }
+  .f-logo { font-family:var(--serif); font-size:20px; font-weight:300; color:white; letter-spacing:.12em; margin-bottom:10px; }
+  .f-logo b { color:var(--tq); font-weight:400; }
+  .f-corp { font-size:11px; color:rgba(255,255,255,.3); margin-bottom:16px; letter-spacing:.06em; }
+  .f-desc { font-size:12.5px; color:rgba(255,255,255,.4); line-height:1.9; font-weight:300; }
+  .f-h { font-family:var(--serif); font-size:10px; letter-spacing:.3em; color:var(--tq); text-transform:uppercase; margin-bottom:20px; }
+  .f-ul { list-style:none; display:flex; flex-direction:column; gap:11px; }
+  .f-ul a { font-size:12.5px; color:rgba(255,255,255,.4); text-decoration:none; transition:color .2s; font-weight:300; }
+  .f-ul a:hover { color:var(--tq); }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; font-size:11.5px; color:rgba(255,255,255,.3); }
+  .footer-bottom a { color:rgba(255,255,255,.3); text-decoration:none; transition:color .2s; }
+  .footer-bottom a:hover { color:var(--tq); }
+  .fb-links { display:flex; gap:28px; }
+
+  /* ─── Responsive ─── */
+  @media (max-width:1100px) {
+    .sec { padding:80px 40px; }
+    .strip { padding:32px 40px; }
+    .hero-content { grid-template-columns:1fr; }
+    .hero-right { display:none; }
+    .hero-left { padding:80px 40px 60px; }
+    .concept-grid, .access-grid { grid-template-columns:1fr; gap:44px; }
+    .plans-row { grid-template-columns:repeat(3,1fr); }
+    .sub-plans { grid-template-columns:1fr; }
+    .footer-top { grid-template-columns:1fr 1fr; gap:40px; }
+    #nav { padding:0 28px; }
+  }
+  @media (max-width:720px) {
+    .sec { padding:64px 24px; }
+    .plans-row { grid-template-columns:1fr 1fr; }
+    .rules { grid-template-columns:1fr; }
+    .cp-block { flex-direction:column; padding:28px; }
+    .nav-items { display:none; }
+    .strip { flex-wrap:wrap; gap:24px; }
+    .strip-div { display:none; }
+    .hero-nums { flex-wrap:wrap; gap:24px; }
+    .footer-top { grid-template-columns:1fr; }
+    #cta { padding:80px 24px; }
+    footer { padding:48px 24px 28px; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="dark-nav">
+  <a href="#" class="logo">
+    <div class="logo-mark">⛳</div>
+    <span class="logo-type">Nala<span class="hi">GOLF</span></span>
+  </a>
+  <ul class="nav-items">
+    <li><a href="#concept">コンセプト</a></li>
+    <li><a href="#pricing">料金プラン</a></li>
+    <li><a href="#rules">ご利用案内</a></li>
+    <li><a href="#access">アクセス</a></li>
+    <li><a href="#cta" class="nav-btn">無料体験予約</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-chip">
+        <div class="hero-chip-dot"></div>
+        グランドオープン 2026年6月予定
+      </div>
+      <div class="hero-kicker">Simulation Golf Studio</div>
+      <h1 class="hero-h1">
+        Golf,<br>
+        <em>Redefined.</em><br>
+        <span class="thin">あなたのゴルフを、</span><br>
+        もっと自由に。
+      </h1>
+      <p class="hero-lead">
+        24時間365日、いつでも好きな時間に。<br>
+        GOLFZON製最新シミュレーターで<br>
+        本格ゴルフ体験を月額定額でお届けします。
+      </p>
+      <div class="hero-cta">
+        <a href="#cta" class="btn-a">
+          初回体験 ¥1,500
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#pricing" class="btn-b">料金プランを見る</a>
+      </div>
+      <div class="hero-nums">
+        <div>
+          <div class="hero-num-val">24h</div>
+          <div class="hero-num-lbl">年中無休営業</div>
+        </div>
+        <div>
+          <div class="hero-num-val">90分</div>
+          <div class="hero-num-lbl">1枠プレイ時間</div>
+        </div>
+        <div>
+          <div class="hero-num-val">¥1,500</div>
+          <div class="hero-num-lbl">初回体験料金</div>
+        </div>
+        <div>
+          <div class="hero-num-val">5プラン</div>
+          <div class="hero-num-lbl">月額定額</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual-frame">
+        <div class="hero-ring ring1"></div>
+        <div class="hero-ring ring2"></div>
+        <div class="hero-ring ring3"></div>
+        <div class="hero-icon-wrap">
+          <div class="hero-icon-main">⛳</div>
+        </div>
+        <div class="hero-tag">📍 千葉市若葉区 &nbsp;|&nbsp; 駐車場完備</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item reveal">
+    <div class="strip-num" data-count="24">0</div>
+    <div class="strip-lbl">時間営業</div>
+  </div>
+  <div class="strip-div"></div>
+  <div class="strip-item reveal d1">
+    <div class="strip-num">¥5,000〜</div>
+    <div class="strip-lbl">月額プラン</div>
+  </div>
+  <div class="strip-div"></div>
+  <div class="strip-item reveal d2">
+    <div class="strip-num">GOLFZON</div>
+    <div class="strip-lbl">最新シミュレーター</div>
+  </div>
+  <div class="strip-div"></div>
+  <div class="strip-item reveal d3">
+    <div class="strip-num">16枠/日</div>
+    <div class="strip-lbl">理論最大予約枠</div>
+  </div>
+  <div class="strip-div"></div>
+  <div class="strip-item reveal d4">
+    <div class="strip-num">¥0</div>
+    <div class="strip-lbl">入会金（オープン記念）</div>
+  </div>
+</div>
+
+<!-- CONCEPT -->
+<section id="concept" class="sec sec-pale">
+  <div class="reveal">
+    <div class="eyebrow">Our Concept</div>
+    <h2 class="sec-h">天気も時間も、<br>もう言い訳にしない。<br><em>理想のゴルフ</em>が、ここに。</h2>
+    <p class="sec-lead">NalaGOLFは千葉市若葉区に誕生したシミュレーションゴルフスタジオ。月額定額で24時間好きな時間に本格プレイができます。</p>
+  </div>
+  <div class="concept-grid">
+    <div class="concept-card reveal-left">
+      <div class="concept-card-grid"></div>
+      <div class="concept-card-glow"></div>
+      <div class="concept-icon">🏌️</div>
+      <div class="concept-label">Nala Golf Studio</div>
+    </div>
+    <div class="feats">
+      <div class="feat reveal d1">
+        <div class="feat-ic">🌙</div>
+        <div>
+          <div class="feat-title">24時間・完全セルフ運営</div>
+          <p class="feat-desc">深夜でも早朝でも、好きな時間に。hacomonoの予約システムで入退室がスムーズ。スタッフ不在でも安心して使えます。</p>
+        </div>
+      </div>
+      <div class="feat reveal d2">
+        <div class="feat-ic">🏆</div>
+        <div>
+          <div class="feat-title">GOLFZON最新シミュレーター搭載</div>
+          <p class="feat-desc">スイングプレート搭載の本格機種。弾道・スイング解析まで、プロ仕様の環境でゲームも練習も充実。</p>
+        </div>
+      </div>
+      <div class="feat reveal d3">
+        <div class="feat-ic">💳</div>
+        <div>
+          <div class="feat-title">月額定額・1日2枠まで通い放題</div>
+          <p class="feat-desc">ライフスタイルに合わせた5つのプランから選択。月額¥5,000〜で1日2枠まで自由に予約できます。</p>
+        </div>
+      </div>
+      <div class="feat reveal d4">
+        <div class="feat-ic">🅿️</div>
+        <div>
+          <div class="feat-title">敷地内駐車場完備（無料）</div>
+          <p class="feat-desc">お車でも気軽にアクセス。敷地内に駐車場を無料でご用意しています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="sec">
+  <div class="reveal">
+    <div class="eyebrow">Pricing Plans</div>
+    <h2 class="sec-h">あなたに合わせた<br><em>5つのプラン</em></h2>
+    <p class="sec-lead">月額定額制で利用回数に関わらず通い放題。オープニング期間中は全プラン¥1,000引き。</p>
+  </div>
+  <div class="plans-wrap">
+    <div class="plans-row">
+      <div class="plan hero-plan reveal d1">
+        <div class="plan-pip">人気 No.1</div>
+        <div class="plan-top">Regular</div>
+        <div class="plan-price">¥15,000<span class="plan-unit">/月</span></div>
+        <div class="plan-time">全時間帯利用可能<br>24時間・365日</div>
+        <div class="plan-who">ゴルフ本格派・使い倒したい方</div>
+        <div class="plan-cp">CP期間 → ¥14,000/月</div>
+      </div>
+      <div class="plan reveal d2">
+        <div class="plan-top">Night</div>
+        <div class="plan-price">¥13,000<span class="plan-unit">/月</span></div>
+        <div class="plan-time">平日 18:00〜24:00<br>土日祝 全日</div>
+        <div class="plan-who">仕事帰りの会社員</div>
+        <div class="plan-cp">CP期間 → ¥12,000/月</div>
+      </div>
+      <div class="plan reveal d3">
+        <div class="plan-top">Day</div>
+        <div class="plan-price">¥10,000<span class="plan-unit">/月</span></div>
+        <div class="plan-time">平日 6:00〜18:00<br>（8枠）</div>
+        <div class="plan-who">主婦・リモートワーク・自営業</div>
+        <div class="plan-cp">CP期間 → ¥9,000/月</div>
+      </div>
+      <div class="plan reveal d4">
+        <div class="plan-top">Senior</div>
+        <div class="plan-price">¥8,000<span class="plan-unit">/月</span></div>
+        <div class="plan-time">平日 6:00〜18:00<br>（8枠）※65歳以上</div>
+        <div class="plan-who">リタイア層・早朝ゴルフ愛好家</div>
+        <div class="plan-cp">CP期間 → ¥7,000/月</div>
+      </div>
+      <div class="plan reveal d5">
+        <div class="plan-top">Late Night</div>
+        <div class="plan-price">¥5,000<span class="plan-unit">/月</span></div>
+        <div class="plan-time">深夜 0:00〜6:00</div>
+        <div class="plan-who">夜型・シフト勤務の方</div>
+        <div class="plan-cp">CP期間 → ¥4,000/月</div>
+      </div>
+    </div>
+
+    <div class="sub-plans">
+      <div class="sub reveal">
+        <div class="sub-title">都度利用・体験</div>
+        <div class="pr">
+          <div>
+            <div class="pr-l">初回ビジター体験</div>
+            <div class="pr-n">1人1回限り・電話番号認証</div>
+          </div>
+          <div class="pr-v">¥1,500</div>
+        </div>
+        <div class="pr">
+          <div>
+            <div class="pr-l">通常ビジター</div>
+            <div class="pr-n">全時間帯・何回でも可</div>
+          </div>
+          <div class="pr-v">¥3,500</div>
+        </div>
+      </div>
+      <div class="sub reveal d1">
+        <div class="sub-title">回数券</div>
+        <div class="pr">
+          <div>
+            <div class="pr-l">4回券</div>
+            <div class="pr-n">有効期限 2ヶ月 / 3,000円/回</div>
+          </div>
+          <div class="pr-v">¥12,000</div>
+        </div>
+        <div class="pr">
+          <div>
+            <div class="pr-l">8回券</div>
+            <div class="pr-n">有効期限 3ヶ月 / 2,500円/回</div>
+          </div>
+          <div class="pr-v">¥20,000</div>
+        </div>
+      </div>
+      <div class="sub reveal d2">
+        <div class="sub-title">入会金</div>
+        <div class="pr">
+          <div><div class="pr-l">通常入会金</div></div>
+          <div class="pr-v">¥11,000</div>
+        </div>
+        <div class="pr">
+          <div>
+            <div class="pr-l">体験後7日以内入会</div>
+          </div>
+          <div class="pr-v hi">無料</div>
+        </div>
+        <div class="pr">
+          <div>
+            <div class="pr-l">オープン記念（〜7/31）</div>
+          </div>
+          <div class="pr-v hi">全員無料</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cp-block reveal">
+      <div>
+        <div class="cp-h">オープニングキャンペーン 実施中</div>
+        <p class="cp-p">グランドオープンから3ヶ月間、お得な特典をご用意しています</p>
+      </div>
+      <div class="cp-tags">
+        <div class="cp-tag">
+          <div class="cp-tag-v">全プラン<br>¥1,000 OFF</div>
+          <div class="cp-tag-l">月額割引</div>
+        </div>
+        <div class="cp-tag">
+          <div class="cp-tag-v">入会金<br>無料</div>
+          <div class="cp-tag-l">7月31日まで</div>
+        </div>
+        <div class="cp-tag">
+          <div class="cp-tag-v">友達紹介<br>10% OFF</div>
+          <div class="cp-tag-l">紹介された方の初月</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section id="rules" class="sec sec-pale">
+  <div class="reveal">
+    <div class="eyebrow">How to Use</div>
+    <h2 class="sec-h">ご利用<em>案内</em></h2>
+    <p class="sec-lead">はじめての方でも安心してご利用いただけるよう、利用ルールをご確認ください。</p>
+  </div>
+  <div class="rules">
+    <div class="rule reveal d1">
+      <div class="rule-t"><span>⏰</span> 枠・予約について</div>
+      <p class="rule-d">1枠90分（75分プレイ＋15分入替）。6:00スタートで1日最大16枠。空き枠があればいつでも予約OK。キャンセルは3時間前まで。</p>
+    </div>
+    <div class="rule reveal d2">
+      <div class="rule-t"><span>📅</span> 1日の利用上限</div>
+      <p class="rule-d">月額会員は1日2枠まで利用可能。2枠目は通常プラン＋¥1,500、深夜プラン＋¥500の追加料金が発生します。</p>
+    </div>
+    <div class="rule reveal d3">
+      <div class="rule-t"><span>🙏</span> キャンセルのお願い</div>
+      <p class="rule-d">他のメンバーの方が利用できるよう、ご都合が悪い場合は利用開始3時間前までにキャンセルをお願いします。無断キャンセルが重なった場合は、ご利用を一時お休みいただくことがあります。</p>
+    </div>
+    <div class="rule reveal d1">
+      <div class="rule-t"><span>👤</span> 年齢制限</div>
+      <p class="rule-d">中学生以上（13歳〜）のご利用が可能です。シニアプランは65歳以上の方を対象としています。</p>
+    </div>
+    <div class="rule reveal d2">
+      <div class="rule-t"><span>📆</span> 月途中の入会</div>
+      <p class="rule-d">月の途中でご入会の場合は、残り日数に応じた日割り計算となります。翌月より通常月額が適用されます。</p>
+    </div>
+    <div class="rule reveal d3">
+      <div class="rule-t"><span>🤝</span> 従業員割引</div>
+      <p class="rule-d">Rai-On従業員および同居ご家族は全プラン25%OFF・入会金無料の特別優待。専用URLにてお申し込みください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access" class="sec">
+  <div class="reveal">
+    <div class="eyebrow">Access</div>
+    <h2 class="sec-h">アクセス</h2>
+  </div>
+  <div class="access-grid">
+    <div class="map-box reveal-left">
+      <div class="map-grid"></div>
+      <div class="map-pin">📍</div>
+      <div class="map-tag">NalaGOLF</div>
+    </div>
+    <div class="access-items">
+      <div class="ai reveal d1">
+        <div class="ai-ic">🏢</div>
+        <div>
+          <div class="ai-l">所在地</div>
+          <div class="ai-v">〒264-0021<br>千葉市若葉区若松町2372-5-101</div>
+          <div class="ai-n">Rai-On新寮 1F 101号室</div>
+        </div>
+      </div>
+      <div class="ai reveal d2">
+        <div class="ai-ic">⏰</div>
+        <div>
+          <div class="ai-l">営業時間</div>
+          <div class="ai-v">24時間・年中無休</div>
+          <div class="ai-n">完全セルフ運営</div>
+        </div>
+      </div>
+      <div class="ai reveal d3">
+        <div class="ai-ic">🅿️</div>
+        <div>
+          <div class="ai-l">駐車場</div>
+          <div class="ai-v">敷地内駐車場あり（無料）</div>
+        </div>
+      </div>
+      <div class="ai reveal d4">
+        <div class="ai-ic">🎯</div>
+        <div>
+          <div class="ai-l">グランドオープン</div>
+          <div class="ai-v">2026年6月中旬〜後半予定</div>
+          <div class="ai-n">プレオープン: 2026年5月末（従業員向け試験運用）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-eye reveal">Get Started</div>
+    <h2 class="cta-h reveal d1">まずは<em>体験</em>から。<br>¥1,500でお試しください。</h2>
+    <p class="cta-p reveal d2">初回体験は¥1,500。体験から7日以内のご入会で入会金が無料になります。オープン記念として7月31日まで全員入会金無料でご入会いただけます。</p>
+    <div class="cta-btns reveal d3">
+      <a href="#" class="btn-c">
+        無料体験を予約する
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#pricing" class="btn-d">料金プランを確認する</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-logo">Nala<b>GOLF</b></div>
+      <div class="f-corp">株式会社Nala</div>
+      <p class="f-desc">千葉市若葉区のシミュレーションゴルフスタジオ。GOLFZON製最新シミュレーターで、24時間365日、あなたのゴルフを支えます。</p>
+    </div>
+    <div>
+      <div class="f-h">Menu</div>
+      <ul class="f-ul">
+        <li><a href="#concept">コンセプト</a></li>
+        <li><a href="#pricing">料金プラン</a></li>
+        <li><a href="#rules">ご利用案内</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-h">Plans</div>
+      <ul class="f-ul">
+        <li><a href="#pricing">レギュラー ¥15,000</a></li>
+        <li><a href="#pricing">ナイト ¥13,000</a></li>
+        <li><a href="#pricing">デイ ¥10,000</a></li>
+        <li><a href="#pricing">シニア ¥8,000</a></li>
+        <li><a href="#pricing">深夜 ¥5,000</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-h">Legal</div>
+      <ul class="f-ul">
+        <li><a href="#">特定商取引法に基づく表記</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+        <li><a href="#">利用規約</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 株式会社Nala. All rights reserved.</span>
+    <div class="fb-links">
+      <a href="#">特定商取引法</a>
+      <a href="#">プライバシーポリシー</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Nav state */
+const nav = document.getElementById('nav');
+const hero = document.getElementById('hero');
+const heroH = hero.offsetHeight;
+window.addEventListener('scroll', () => {
+  if (window.scrollY > heroH - 80) {
+    nav.className = 'solid';
+  } else {
+    nav.className = 'dark-nav';
+  }
+}, { passive: true });
+
+/* Scroll reveal */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => io.observe(el));
+
+/* Counter animation */
+const counters = document.querySelectorAll('[data-count]');
+const cio = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.count;
+    const dur = 1400;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(ease * target) + 'h';
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    cio.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(el => cio.observe(el));
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
