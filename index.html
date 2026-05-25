@@ -57,7 +57,7 @@
   .logo-mark {
     width:32px; height:32px; border-radius:50%;
     background: var(--tq); display:flex; align-items:center; justify-content:center;
-    font-size:15px; box-shadow: 0 0 16px var(--tq-glow);
+    box-shadow: 0 0 16px var(--tq-glow);
   }
   .logo-type { font-family:var(--serif); font-size:18px; font-weight:400; letter-spacing:.12em; }
   .logo-type .hi { color:var(--tq); }
@@ -189,36 +189,19 @@
     display:flex; align-items:center; justify-content:center; position:relative;
   }
   .hero-visual-frame {
-    position:relative; width:360px; height:360px;
+    position:relative; width:380px;
   }
-  .hero-ring {
-    position:absolute; border-radius:50%; border:1px solid;
-    top:50%; left:50%; transform:translate(-50%,-50%);
+  .hero-sim-svg {
+    width:100%; height:auto;
+    filter: drop-shadow(0 0 40px rgba(12,184,179,.15));
+    animation: fadeSlideUp .9s var(--ease2) .5s both;
   }
-  .ring1 { width:100%; height:100%; border-color:rgba(12,184,179,.2); animation:ringPulse 3s ease-in-out infinite; }
-  .ring2 { width:80%; height:80%; border-color:rgba(12,184,179,.15); animation:ringPulse 3s ease-in-out .5s infinite; }
-  .ring3 { width:60%; height:60%; border-color:rgba(12,184,179,.12); animation:ringPulse 3s ease-in-out 1s infinite; }
-  @keyframes ringPulse {
-    0%,100%{transform:translate(-50%,-50%) scale(1); opacity:.8}
-    50%{transform:translate(-50%,-50%) scale(1.04); opacity:1}
-  }
-  .hero-icon-wrap {
-    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:160px; height:160px; border-radius:50%;
-    background:rgba(12,184,179,.1); border:1px solid rgba(12,184,179,.3);
-    display:flex; align-items:center; justify-content:center;
-    backdrop-filter:blur(8px);
-  }
-  .hero-icon-main {
-    font-size:64px; filter:drop-shadow(0 0 28px rgba(12,184,179,.7));
-    animation: floatIcon 4s ease-in-out infinite;
-  }
-  @keyframes floatIcon { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
   .hero-tag {
     position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
     background:rgba(12,184,179,.15); border:1px solid rgba(12,184,179,.4);
     backdrop-filter:blur(12px); color:white; padding:10px 24px;
     border-radius:40px; font-size:11px; letter-spacing:.18em; white-space:nowrap;
+    display:flex; align-items:center; gap:8px;
   }
 
   @keyframes fadeSlideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
@@ -269,7 +252,7 @@
     background:radial-gradient(circle, rgba(12,184,179,.2) 0%, transparent 70%);
     top:50%; left:50%; transform:translate(-50%,-50%);
   }
-  .concept-icon { position:relative; z-index:2; font-size:96px; filter:drop-shadow(0 0 48px rgba(12,184,179,.65)); }
+  .concept-icon-wrap { position:relative; z-index:2; }
   .concept-label {
     position:absolute; bottom:28px; left:28px; z-index:2;
     font-family:var(--serif); font-size:11px; letter-spacing:.3em;
@@ -286,7 +269,7 @@
   .feat-ic {
     width:44px; height:44px; flex-shrink:0; border-radius:2px;
     background:var(--tq-dim); display:flex; align-items:center; justify-content:center;
-    font-size:20px; border:1px solid rgba(12,184,179,.2);
+    border:1px solid rgba(12,184,179,.2); color:var(--tq);
   }
   .feat-title { font-size:14.5px; font-weight:500; color:var(--ink); margin-bottom:5px; letter-spacing:.03em; }
   .feat-desc { font-size:13px; color:var(--mist); line-height:1.85; font-weight:300; }
@@ -368,30 +351,15 @@
   }
   .rule:hover { box-shadow:0 8px 32px rgba(0,0,0,.07); transform:translateY(-3px); }
   .rule-t { font-size:13.5px; font-weight:500; color:var(--ink); margin-bottom:10px; display:flex; align-items:center; gap:9px; }
-  .rule-t span { font-size:18px; }
+  .rule-ic { color:var(--tq); flex-shrink:0; }
   .rule-d { font-size:12.5px; color:var(--mist); line-height:1.9; font-weight:300; }
 
   /* ─── Access ─── */
   .access-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-top:64px; }
   .map-box {
     height:400px; border-radius:3px; overflow:hidden; position:relative;
-    background:linear-gradient(135deg, #D0EFEE 0%, #9EDFDC 100%);
-    display:flex; align-items:center; justify-content:center;
   }
-  .map-grid {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(12,184,179,.2) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(12,184,179,.2) 1px, transparent 1px);
-    background-size:28px 28px;
-  }
-  .map-pin { position:relative; z-index:2; font-size:52px; filter:drop-shadow(0 4px 14px rgba(0,0,0,.15)); }
-  .map-tag {
-    position:absolute; bottom:20px; left:20px;
-    background:var(--tq); color:white; padding:7px 16px;
-    border-radius:2px; font-size:11.5px; letter-spacing:.12em;
-    box-shadow:0 4px 14px var(--tq-glow);
-  }
+  .map-box iframe { width:100%; height:100%; border:0; display:block; }
   .access-items { display:flex; flex-direction:column; gap:0; }
   .ai {
     display:flex; gap:18px; padding:24px 0;
@@ -401,7 +369,8 @@
   .ai-ic {
     width:42px; height:42px; flex-shrink:0; border-radius:2px;
     background:var(--tq-dim); border:1px solid rgba(12,184,179,.2);
-    display:flex; align-items:center; justify-content:center; font-size:18px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--tq);
   }
   .ai-l { font-size:10px; letter-spacing:.18em; color:var(--tq); text-transform:uppercase; margin-bottom:4px; }
   .ai-v { font-size:14.5px; color:var(--ink); font-weight:400; line-height:1.65; }
@@ -493,7 +462,9 @@
 <!-- NAV -->
 <nav id="nav" class="dark-nav">
   <a href="#" class="logo">
-    <div class="logo-mark">⛳</div>
+    <div class="logo-mark">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="22" x2="5" y2="5"/><path d="M5 5 L18 10 L5 15" fill="white" stroke="none"/><path d="M5 5 L18 10 L5 15"/></svg>
+    </div>
     <span class="logo-type">Nala<span class="hi">GOLF</span></span>
   </a>
   <ul class="nav-items">
@@ -556,13 +527,67 @@
     </div>
     <div class="hero-right">
       <div class="hero-visual-frame">
-        <div class="hero-ring ring1"></div>
-        <div class="hero-ring ring2"></div>
-        <div class="hero-ring ring3"></div>
-        <div class="hero-icon-wrap">
-          <div class="hero-icon-main">⛳</div>
+        <!-- GOLFZON simulator HUD illustration -->
+        <svg class="hero-sim-svg" viewBox="0 0 380 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Screen frame -->
+          <rect x="10" y="10" width="360" height="240" rx="6" stroke="rgba(12,184,179,0.25)" stroke-width="1"/>
+          <!-- Corner accents -->
+          <path d="M10 52 L10 10 L52 10" stroke="rgba(12,184,179,0.7)" stroke-width="2" fill="none"/>
+          <path d="M328 10 L370 10 L370 52" stroke="rgba(12,184,179,0.7)" stroke-width="2" fill="none"/>
+          <path d="M10 208 L10 250 L52 250" stroke="rgba(12,184,179,0.7)" stroke-width="2" fill="none"/>
+          <path d="M328 250 L370 250 L370 208" stroke="rgba(12,184,179,0.7)" stroke-width="2" fill="none"/>
+          <!-- Interior HUD grid -->
+          <line x1="10" y1="90" x2="370" y2="90" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
+          <line x1="10" y1="140" x2="370" y2="140" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
+          <line x1="10" y1="190" x2="370" y2="190" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
+          <line x1="100" y1="10" x2="100" y2="250" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
+          <line x1="190" y1="10" x2="190" y2="250" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
+          <line x1="280" y1="10" x2="280" y2="250" stroke="rgba(12,184,179,0.07)" stroke-width="1"/>
+          <!-- Sky fill -->
+          <path d="M10 10 L370 10 L370 190 Q310 200 190 196 Q80 192 10 208 Z" fill="rgba(12,184,179,0.03)"/>
+          <!-- Fairway horizon -->
+          <path d="M10 208 Q80 192 190 196 Q310 200 370 190 L370 250 L10 250 Z" fill="rgba(12,184,179,0.06)"/>
+          <path d="M10 208 Q80 192 190 196 Q310 200 370 190" stroke="rgba(12,184,179,0.22)" stroke-width="1" fill="none"/>
+          <!-- Ball trajectory arc (dashed) -->
+          <path d="M55 215 Q140 55 340 185" stroke="rgba(12,184,179,0.75)" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+          <!-- Ball at tee -->
+          <circle cx="55" cy="215" r="5.5" fill="rgba(12,184,179,0.9)"/>
+          <circle cx="55" cy="215" r="9" stroke="rgba(12,184,179,0.25)" stroke-width="1" fill="none"/>
+          <!-- Trajectory waypoints -->
+          <circle cx="130" cy="125" r="3" fill="rgba(12,184,179,0.45)"/>
+          <circle cx="210" cy="82" r="3" fill="rgba(12,184,179,0.5)"/>
+          <circle cx="285" cy="120" r="3" fill="rgba(12,184,179,0.55)"/>
+          <!-- Flag -->
+          <line x1="340" y1="185" x2="340" y2="155" stroke="rgba(12,184,179,0.8)" stroke-width="1.5"/>
+          <polygon points="340,155 357,162 340,169" fill="rgba(12,184,179,0.9)"/>
+          <!-- Distance baseline -->
+          <line x1="55" y1="228" x2="340" y2="228" stroke="rgba(12,184,179,0.18)" stroke-width="0.5" stroke-dasharray="3 3"/>
+          <text x="197" y="240" font-size="9" fill="rgba(12,184,179,0.45)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.12em">248 yds</text>
+          <!-- Data overlay — top left -->
+          <rect x="18" y="18" width="88" height="34" rx="2" fill="rgba(8,21,31,0.7)" stroke="rgba(12,184,179,0.2)" stroke-width="0.5"/>
+          <text x="62" y="31" font-size="7.5" fill="rgba(12,184,179,0.55)" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="0.1em">BALL SPEED</text>
+          <text x="62" y="44" font-size="11" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.05em">152 mph</text>
+          <!-- Data overlay — top right -->
+          <rect x="274" y="18" width="88" height="34" rx="2" fill="rgba(8,21,31,0.7)" stroke="rgba(12,184,179,0.2)" stroke-width="0.5"/>
+          <text x="318" y="31" font-size="7.5" fill="rgba(12,184,179,0.55)" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="0.1em">CARRY DIST</text>
+          <text x="318" y="44" font-size="11" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia, serif" letter-spacing="0.05em">248 yds</text>
+          <!-- Bottom stats bar -->
+          <rect x="10" y="258" width="360" height="52" rx="3" fill="rgba(8,21,31,0.85)" stroke="rgba(12,184,179,0.18)" stroke-width="0.5"/>
+          <text x="76" y="274" font-size="7" fill="rgba(12,184,179,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">CLUB SPEED</text>
+          <text x="76" y="288" font-size="12" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia,serif">108 mph</text>
+          <line x1="148" y1="264" x2="148" y2="300" stroke="rgba(12,184,179,0.12)" stroke-width="0.5"/>
+          <text x="190" y="274" font-size="7" fill="rgba(12,184,179,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">LAUNCH ANGLE</text>
+          <text x="190" y="288" font-size="12" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia,serif">14.2°</text>
+          <line x1="232" y1="264" x2="232" y2="300" stroke="rgba(12,184,179,0.12)" stroke-width="0.5"/>
+          <text x="305" y="274" font-size="7" fill="rgba(12,184,179,0.5)" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="0.12em">BACK SPIN</text>
+          <text x="305" y="288" font-size="12" fill="rgba(12,184,179,0.95)" text-anchor="middle" font-family="Georgia,serif">2,840 rpm</text>
+          <!-- GOLFZON watermark -->
+          <text x="370" y="315" font-size="8" fill="rgba(12,184,179,0.25)" text-anchor="end" font-family="Arial,sans-serif" letter-spacing="0.18em">GOLFZON</text>
+        </svg>
+        <div class="hero-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          千葉市若葉区 &nbsp;|&nbsp; 駐車場完備
         </div>
-        <div class="hero-tag">📍 千葉市若葉区 &nbsp;|&nbsp; 駐車場完備</div>
       </div>
     </div>
   </div>
@@ -607,33 +632,58 @@
     <div class="concept-card reveal-left">
       <div class="concept-card-grid"></div>
       <div class="concept-card-glow"></div>
-      <div class="concept-icon">🏌️</div>
+      <div class="concept-icon-wrap">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 40px rgba(12,184,179,.6))">
+          <!-- Flag pole -->
+          <line x1="58" y1="20" x2="58" y2="96" stroke="rgba(12,184,179,0.9)" stroke-width="3" stroke-linecap="round"/>
+          <!-- Flag -->
+          <path d="M58 20 L92 34 L58 48 Z" fill="rgba(12,184,179,0.85)"/>
+          <!-- Hole/cup -->
+          <ellipse cx="58" cy="96" rx="22" ry="7" stroke="rgba(12,184,179,0.4)" stroke-width="1.5" fill="rgba(12,184,179,0.08)"/>
+          <!-- Ball -->
+          <circle cx="32" cy="96" r="7" fill="rgba(12,184,179,0.75)"/>
+          <!-- Trajectory hint -->
+          <path d="M20 76 Q30 56 44 52" stroke="rgba(12,184,179,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+        </svg>
+      </div>
       <div class="concept-label">Nala Golf Studio</div>
     </div>
     <div class="feats">
       <div class="feat reveal d1">
-        <div class="feat-ic">🌙</div>
+        <div class="feat-ic">
+          <!-- Moon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
         <div>
           <div class="feat-title">24時間・完全セルフ運営</div>
           <p class="feat-desc">深夜でも早朝でも、好きな時間に。hacomonoの予約システムで入退室がスムーズ。スタッフ不在でも安心して使えます。</p>
         </div>
       </div>
       <div class="feat reveal d2">
-        <div class="feat-ic">🏆</div>
+        <div class="feat-ic">
+          <!-- Award -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
         <div>
           <div class="feat-title">GOLFZON最新シミュレーター搭載</div>
           <p class="feat-desc">スイングプレート搭載の本格機種。弾道・スイング解析まで、プロ仕様の環境でゲームも練習も充実。</p>
         </div>
       </div>
       <div class="feat reveal d3">
-        <div class="feat-ic">💳</div>
+        <div class="feat-ic">
+          <!-- CreditCard -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
         <div>
           <div class="feat-title">月額定額・1日2枠まで通い放題</div>
           <p class="feat-desc">ライフスタイルに合わせた5つのプランから選択。月額¥5,000〜で1日2枠まで自由に予約できます。</p>
         </div>
       </div>
       <div class="feat reveal d4">
-        <div class="feat-ic">🅿️</div>
+        <div class="feat-ic">
+          <!-- Car/Parking -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l4 4v8a2 2 0 0 1-2 2h-2"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><polyline points="7 9 10 9 12 7 14 9 17 9"/></svg>
+        </div>
         <div>
           <div class="feat-title">敷地内駐車場完備（無料）</div>
           <p class="feat-desc">お車でも気軽にアクセス。敷地内に駐車場を無料でご用意しています。</p>
@@ -778,27 +828,45 @@
   </div>
   <div class="rules">
     <div class="rule reveal d1">
-      <div class="rule-t"><span>⏰</span> 枠・予約について</div>
+      <div class="rule-t">
+        <span class="rule-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+        枠・予約について
+      </div>
       <p class="rule-d">1枠90分（75分プレイ＋15分入替）。6:00スタートで1日最大16枠。空き枠があればいつでも予約OK。キャンセルは3時間前まで。</p>
     </div>
     <div class="rule reveal d2">
-      <div class="rule-t"><span>📅</span> 1日の利用上限</div>
+      <div class="rule-t">
+        <span class="rule-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+        1日の利用上限
+      </div>
       <p class="rule-d">月額会員は1日2枠まで利用可能。2枠目は通常プラン＋¥1,500、深夜プラン＋¥500の追加料金が発生します。</p>
     </div>
     <div class="rule reveal d3">
-      <div class="rule-t"><span>🙏</span> キャンセルのお願い</div>
+      <div class="rule-t">
+        <span class="rule-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+        キャンセルのお願い
+      </div>
       <p class="rule-d">他のメンバーの方が利用できるよう、ご都合が悪い場合は利用開始3時間前までにキャンセルをお願いします。無断キャンセルが重なった場合は、ご利用を一時お休みいただくことがあります。</p>
     </div>
     <div class="rule reveal d1">
-      <div class="rule-t"><span>👤</span> 年齢制限</div>
+      <div class="rule-t">
+        <span class="rule-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        年齢制限
+      </div>
       <p class="rule-d">中学生以上（13歳〜）のご利用が可能です。シニアプランは65歳以上の方を対象としています。</p>
     </div>
     <div class="rule reveal d2">
-      <div class="rule-t"><span>📆</span> 月途中の入会</div>
+      <div class="rule-t">
+        <span class="rule-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg></span>
+        月途中の入会
+      </div>
       <p class="rule-d">月の途中でご入会の場合は、残り日数に応じた日割り計算となります。翌月より通常月額が適用されます。</p>
     </div>
     <div class="rule reveal d3">
-      <div class="rule-t"><span>🤝</span> 従業員割引</div>
+      <div class="rule-t">
+        <span class="rule-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        従業員割引
+      </div>
       <p class="rule-d">Rai-On従業員および同居ご家族は全プラン25%OFF・入会金無料の特別優待。専用URLにてお申し込みください。</p>
     </div>
   </div>
@@ -812,13 +880,16 @@
   </div>
   <div class="access-grid">
     <div class="map-box reveal-left">
-      <div class="map-grid"></div>
-      <div class="map-pin">📍</div>
-      <div class="map-tag">NalaGOLF</div>
+      <iframe
+        src="https://maps.google.com/maps?q=千葉県千葉市若葉区若松町2372-5&output=embed&z=16"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
     <div class="access-items">
       <div class="ai reveal d1">
-        <div class="ai-ic">🏢</div>
+        <div class="ai-ic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22V12h6v10"/><path d="M8 7h.01"/><path d="M12 7h.01"/><path d="M16 7h.01"/><path d="M8 11h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/></svg>
+        </div>
         <div>
           <div class="ai-l">所在地</div>
           <div class="ai-v">〒264-0021<br>千葉市若葉区若松町2372-5-101</div>
@@ -826,7 +897,9 @@
         </div>
       </div>
       <div class="ai reveal d2">
-        <div class="ai-ic">⏰</div>
+        <div class="ai-ic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
         <div>
           <div class="ai-l">営業時間</div>
           <div class="ai-v">24時間・年中無休</div>
@@ -834,14 +907,18 @@
         </div>
       </div>
       <div class="ai reveal d3">
-        <div class="ai-ic">🅿️</div>
+        <div class="ai-ic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
         <div>
           <div class="ai-l">駐車場</div>
           <div class="ai-v">敷地内駐車場あり（無料）</div>
         </div>
       </div>
       <div class="ai reveal d4">
-        <div class="ai-ic">🎯</div>
+        <div class="ai-ic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+        </div>
         <div>
           <div class="ai-l">グランドオープン</div>
           <div class="ai-v">2026年6月中旬〜後半予定</div>
