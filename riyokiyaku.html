@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>特定商取引法に基づく表記 | NalaGOLF</title>
-  <meta name="description" content="NalaGOLF（株式会社Nala）の特定商取引法に基づく表記ページです。">
+  <title>利用規約 | NalaGOLF</title>
+  <meta name="description" content="NalaGOLF（株式会社Nala）の利用規約ページです。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
-
   <style>
   :root {
     --tq:       #85d6d0;
@@ -16,20 +15,17 @@
     --tq-dim:   rgba(133,214,208,.12);
     --tq-glow:  rgba(133,214,208,.35);
     --ink:      #071516;
-    --ink2:     #0D2828;
     --mist:     #3D4D5C;
     --fog:      #5C6E7E;
     --pale:     #F3F6F8;
     --white:    #FFFFFF;
     --serif:    'Cormorant Garamond', 'Georgia', serif;
     --sans:     'Noto Sans JP', sans-serif;
-    --ease2:    cubic-bezier(.4,0,.2,1);
   }
   *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
   html { scroll-behavior: smooth; font-size: 17px; }
   body { font-family: var(--sans); background: var(--white); color: var(--ink); overflow-x: hidden; font-weight: 400; }
 
-  /* ─── Nav ─── */
   #nav {
     position: fixed; top:0; left:0; right:0; z-index:300;
     height:68px; padding:0 52px;
@@ -43,25 +39,14 @@
   .logo-type { font-family:var(--serif); font-size:18px; font-weight:400; letter-spacing:.12em; color:var(--ink); }
   .logo-type .hi { color:var(--tq); }
   .nav-items { display:flex; align-items:center; gap:36px; list-style:none; }
-  .nav-items a {
-    font-size:12px; font-weight:400; letter-spacing:.12em; color:var(--mist);
-    text-decoration:none; transition:color .2s; position:relative;
-  }
+  .nav-items a { font-size:12px; font-weight:400; letter-spacing:.12em; color:var(--mist); text-decoration:none; transition:color .2s; position:relative; }
   .nav-items a:hover { color:var(--tq); }
-  .nav-items a::after {
-    content:''; position:absolute; bottom:-3px; left:0; right:0;
-    height:1px; background:var(--tq); transform:scaleX(0); transition:transform .25s;
-  }
+  .nav-items a::after { content:''; position:absolute; bottom:-3px; left:0; right:0; height:1px; background:var(--tq); transform:scaleX(0); transition:transform .25s; }
   .nav-items a:hover::after { transform:scaleX(1); }
-  .nav-btn {
-    background:var(--tq); color:var(--white) !important;
-    padding:9px 22px; border-radius:2px; font-size:12px !important;
-    letter-spacing:.14em !important; transition: background .2s, box-shadow .2s, transform .2s !important;
-  }
+  .nav-btn { background:var(--tq); color:var(--white) !important; padding:9px 22px; border-radius:2px; font-size:12px !important; letter-spacing:.14em !important; transition: background .2s, box-shadow .2s, transform .2s !important; }
   .nav-btn::after { display:none !important; }
   .nav-btn:hover { background:var(--tq2) !important; box-shadow:0 4px 20px var(--tq-glow) !important; transform:translateY(-1px) !important; }
 
-  /* ─── Page header ─── */
   .page-header {
     padding: 120px 80px 64px;
     background: linear-gradient(135deg, #071516 0%, #0C2020 35%, #0D2E2C 65%, #144848 85%, #85d6d0 160%);
@@ -69,70 +54,29 @@
   }
   .page-header::before {
     content:''; position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(133,214,208,.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(133,214,208,.06) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(133,214,208,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(133,214,208,.06) 1px, transparent 1px);
     background-size: 72px 72px;
   }
   .page-header-inner { position: relative; z-index: 1; }
-  .breadcrumb {
-    font-size: 12px; letter-spacing: .12em; margin-bottom: 24px;
-    display: flex; align-items: center; gap: 8px;
-  }
+  .breadcrumb { font-size: 12px; letter-spacing: .12em; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
   .breadcrumb a { color: rgba(255,255,255,.5); text-decoration:none; transition:color .2s; }
   .breadcrumb a:hover { color:var(--tq); }
   .breadcrumb span { color: rgba(255,255,255,.3); }
   .breadcrumb-current { color: rgba(255,255,255,.7); }
-  .page-eyebrow {
-    font-family:var(--serif); font-size:11px; letter-spacing:.38em;
-    color:var(--tq); text-transform:uppercase;
-    display:flex; align-items:center; gap:14px; margin-bottom:16px;
-  }
+  .page-eyebrow { font-family:var(--serif); font-size:11px; letter-spacing:.38em; color:var(--tq); text-transform:uppercase; display:flex; align-items:center; gap:14px; margin-bottom:16px; }
   .page-eyebrow::before { content:''; width:24px; height:1px; background:var(--tq); }
-  .page-title {
-    font-family:var(--serif); font-size: clamp(28px, 3vw, 42px);
-    font-weight:300; color:var(--white); letter-spacing:.06em; line-height:1.3;
-  }
+  .page-title { font-family:var(--serif); font-size: clamp(28px, 3vw, 42px); font-weight:300; color:var(--white); letter-spacing:.06em; line-height:1.3; }
 
-  /* ─── Content ─── */
-  .content-wrap {
-    max-width: 900px; margin: 0 auto; padding: 72px 80px 96px;
-  }
-
-  /* PDF viewer */
-  .pdf-section { margin-bottom: 48px; }
-  .pdf-note {
-    font-size:13px; color:var(--mist); margin-bottom:20px; line-height:1.9;
-  }
-  .pdf-frame-wrap {
-    border: 1px solid rgba(0,0,0,.1); border-radius: 4px; overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0,0,0,.08);
-  }
-  .pdf-frame {
-    width: 100%; height: 800px; display: block; border: 0;
-  }
-  .pdf-download {
-    margin-top: 20px; display: flex; align-items: center; gap: 12px;
-  }
-  .btn-pdf {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--tq); color: var(--white);
-    padding: 12px 28px; border-radius: 2px;
-    font-size: 13px; letter-spacing: .12em; text-decoration: none;
-    transition: all .3s; font-family: var(--sans);
-  }
+  .content-wrap { max-width: 900px; margin: 0 auto; padding: 72px 80px 96px; }
+  .pdf-note { font-size:13px; color:var(--mist); margin-bottom:20px; line-height:1.9; }
+  .pdf-frame-wrap { border: 1px solid rgba(0,0,0,.1); border-radius: 4px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+  .pdf-frame { width: 100%; height: 800px; display: block; border: 0; }
+  .pdf-download { margin-top: 20px; display: flex; align-items: center; gap: 12px; }
+  .btn-pdf { display: inline-flex; align-items: center; gap: 8px; background: var(--tq); color: var(--white); padding: 12px 28px; border-radius: 2px; font-size: 13px; letter-spacing: .12em; text-decoration: none; transition: all .3s; font-family: var(--sans); }
   .btn-pdf:hover { background: var(--tq2); box-shadow: 0 6px 20px var(--tq-glow); transform: translateY(-1px); }
-  .btn-pdf svg { flex-shrink: 0; }
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid rgba(0,0,0,.15); color: var(--mist);
-    padding: 12px 28px; border-radius: 2px;
-    font-size: 13px; letter-spacing: .12em; text-decoration: none;
-    transition: all .3s;
-  }
+  .btn-outline { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(0,0,0,.15); color: var(--mist); padding: 12px 28px; border-radius: 2px; font-size: 13px; letter-spacing: .12em; text-decoration: none; transition: all .3s; }
   .btn-outline:hover { border-color: var(--tq); color: var(--tq); }
 
-  /* ─── Footer ─── */
   footer { background:#05101A; padding:64px 80px 36px; }
   .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.07); }
   .footer-logo-img { width:120px; height:auto; object-fit:contain; margin-bottom:10px; display:block; }
@@ -142,19 +86,13 @@
   .f-ul { list-style:none; display:flex; flex-direction:column; gap:12px; }
   .f-ul a { font-size:14px; color:rgba(255,255,255,.75); text-decoration:none; transition:color .2s; font-weight:400; }
   .f-ul a:hover { color:var(--tq); }
-  .f-ul a.f-contact-btn {
-    display:inline-block; margin-top:8px;
-    background:var(--tq); color:var(--ink); font-weight:500;
-    padding:11px 24px; border-radius:2px; font-size:14px;
-    transition: background .2s, box-shadow .2s, transform .2s;
-  }
+  .f-ul a.f-contact-btn { display:inline-block; margin-top:8px; background:var(--tq); color:var(--ink); font-weight:500; padding:11px 24px; border-radius:2px; font-size:14px; transition: background .2s, box-shadow .2s, transform .2s; }
   .f-ul a.f-contact-btn:hover { background:var(--tq2); box-shadow:0 4px 20px var(--tq-glow); transform:translateY(-1px); color:var(--ink); }
   .footer-bottom { display:flex; justify-content:space-between; align-items:center; font-size:13px; color:rgba(255,255,255,.55); }
   .footer-bottom a { color:rgba(255,255,255,.55); text-decoration:none; transition:color .2s; }
   .footer-bottom a:hover { color:var(--tq); }
   .fb-links { display:flex; gap:28px; }
 
-  /* ─── Responsive ─── */
   @media (max-width:1100px) {
     .content-wrap { padding: 56px 40px 72px; }
     .page-header { padding: 112px 40px 52px; }
@@ -174,7 +112,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="/" class="logo">
     <img src="logo-mark.svg" class="logo-mark-img" alt="NalaGOLF mark">
@@ -189,47 +126,40 @@
   </ul>
 </nav>
 
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
     <div class="breadcrumb">
       <a href="/">ホーム</a>
       <span>›</span>
-      <span class="breadcrumb-current">特定商取引法に基づく表記</span>
+      <span class="breadcrumb-current">利用規約</span>
     </div>
     <div class="page-eyebrow">Legal</div>
-    <h1 class="page-title">特定商取引法に基づく表記</h1>
+    <h1 class="page-title">利用規約</h1>
   </div>
 </div>
 
-<!-- CONTENT -->
 <div class="content-wrap">
-  <div class="pdf-section">
-    <p class="pdf-note">
-      下記に特定商取引法に基づく表記を掲載しています。PDFが表示されない場合は「PDFを開く」ボタンからご覧ください。
-    </p>
-    <div class="pdf-frame-wrap">
-      <iframe
-        class="pdf-frame"
-        src="/tokushoho.pdf"
-        title="特定商取引法に基づく表記">
-      </iframe>
-    </div>
-    <div class="pdf-download">
-      <a href="/tokushoho.pdf"
-         target="_blank" rel="noopener" class="btn-pdf">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        PDFを開く（別タブ）
-      </a>
-      <a href="/" class="btn-outline">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        トップページへ戻る
-      </a>
-    </div>
+  <p class="pdf-note">下記に利用規約を掲載しています。PDFが表示されない場合は「PDFを開く」ボタンからご覧ください。</p>
+  <div class="pdf-frame-wrap">
+    <iframe
+      class="pdf-frame"
+      src="/riyokiyaku.pdf"
+      title="利用規約">
+    </iframe>
+  </div>
+  <div class="pdf-download">
+    <a href="/riyokiyaku.pdf"
+       target="_blank" rel="noopener" class="btn-pdf">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      PDFを開く（別タブ）
+    </a>
+    <a href="/" class="btn-outline">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      トップページへ戻る
+    </a>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
