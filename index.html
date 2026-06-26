@@ -7,7 +7,7 @@
   <meta name="description" content="千葉市若葉区のシミュレーションゴルフスタジオ。GOLFZON製最新シミュレーターで24時間365日通い放題。月額5,000円〜。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Zen+Old+Mincho:wght@400;500&family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
   /* ─── Variables ─── */
@@ -22,8 +22,9 @@
     --fog:      #5C6E7E;
     --pale:     #F3F6F8;
     --white:    #FFFFFF;
-    --serif:    'Cormorant Garamond', 'Georgia', serif;
-    --sans:     'Noto Sans JP', sans-serif;
+    --serif:    'DM Serif Display', 'Georgia', serif;
+    --serif-jp: 'Zen Old Mincho', 'Georgia', serif;
+    --sans:     'BIZ UDGothic', 'Noto Sans JP', sans-serif;
     --ease:     cubic-bezier(.22,.68,0,1.2);
     --ease2:    cubic-bezier(.4,0,.2,1);
   }
@@ -140,12 +141,12 @@
   .hero-kicker::before { content:''; width:32px; height:1px; background:var(--tq); }
   .hero-h1 {
     font-family:var(--serif); font-size:clamp(44px, 5vw, 68px);
-    font-weight:300; line-height:1.15; letter-spacing:.04em;
+    font-weight:400; line-height:1.15; letter-spacing:.02em;
     color:var(--white); margin-bottom:28px;
     animation: fadeSlideUp .9s var(--ease2) .4s both;
   }
   .hero-h1 em { font-style:italic; color:var(--tq); }
-  .hero-h1 .thin { font-weight:200; }
+  .hero-h1 .thin { font-family:var(--serif-jp); font-weight:400; letter-spacing:.08em; }
   .hero-lead {
     font-size:14px; font-weight:300; color:rgba(255,255,255,.55);
     line-height:2; max-width:380px; margin-bottom:52px;
@@ -228,7 +229,7 @@
     display:flex; align-items:center; gap:14px; margin-bottom:20px;
   }
   .eyebrow::before { content:''; width:24px; height:1px; background:var(--tq); }
-  .sec-h { font-family:'Noto Serif JP', serif; font-size:clamp(32px,3.5vw,48px); font-weight:300; line-height:1.3; letter-spacing:.04em; }
+  .sec-h { font-family:var(--serif-jp); font-size:clamp(32px,3.5vw,48px); font-weight:400; line-height:1.4; letter-spacing:.06em; }
   .sec-h em { font-style:normal; color:var(--tq); }
   .sec-lead { margin-top:18px; font-size:15px; color:var(--mist); line-height:2; font-weight:400; max-width:520px; }
 
@@ -331,7 +332,7 @@
     background:var(--ink); border-radius:3px;
     display:flex; align-items:center; justify-content:space-between; gap:32px;
   }
-  .cp-h { font-family:var(--serif); font-size:22px; font-weight:400; color:white; letter-spacing:.06em; margin-bottom:6px; }
+  .cp-h { font-family:var(--serif-jp); font-size:22px; font-weight:400; color:white; letter-spacing:.08em; margin-bottom:6px; }
   .cp-p { font-size:13px; color:rgba(255,255,255,.65); font-weight:400; }
   .cp-tags { display:flex; gap:12px; flex-wrap:wrap; }
   .cp-tag {
@@ -391,8 +392,8 @@
   .cta-inner { position:relative; z-index:1; }
   .cta-eye { font-family:var(--serif); font-size:10.5px; letter-spacing:.4em; color:var(--tq); text-transform:uppercase; margin-bottom:28px; }
   .cta-h {
-    font-family:var(--serif); font-size:clamp(36px,4.5vw,60px);
-    font-weight:300; color:var(--white); line-height:1.25; letter-spacing:.04em; margin-bottom:24px;
+    font-family:var(--serif-jp); font-size:clamp(36px,4.5vw,60px);
+    font-weight:400; color:var(--white); line-height:1.3; letter-spacing:.06em; margin-bottom:24px;
   }
   .cta-h em { font-style:italic; color:var(--tq); }
   .cta-p { font-size:15px; color:rgba(255,255,255,.7); line-height:2; max-width:440px; margin:0 auto 52px; font-weight:400; }
@@ -434,8 +435,98 @@
   .footer-bottom a:hover { color:var(--tq); }
   .fb-links { display:flex; gap:28px; }
 
+  /* ─── Worries ─── */
+  .worries-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:64px; }
+  .worry {
+    background:var(--white); padding:36px 28px;
+    border:1px solid rgba(0,0,0,.06);
+    position:relative; overflow:hidden;
+    transition: background .25s;
+  }
+  .worry:hover { background:var(--ink); }
+  .worry-num {
+    font-family:var(--serif); font-size:52px; font-weight:400;
+    color:rgba(0,0,0,.06); line-height:1; margin-bottom:16px;
+    transition: color .25s;
+  }
+  .worry:hover .worry-num { color:rgba(133,214,208,.12); }
+  .worry-q {
+    font-family:var(--serif-jp); font-size:17px; font-weight:400;
+    color:var(--ink); line-height:1.55; letter-spacing:.05em; margin-bottom:14px;
+    transition: color .25s;
+  }
+  .worry:hover .worry-q { color:var(--white); }
+  .worry-a {
+    font-size:13px; color:var(--mist); line-height:1.9;
+    transition: color .25s;
+  }
+  .worry:hover .worry-a { color:rgba(255,255,255,.6); }
+  .worry-tq {
+    display:inline-block; margin-top:14px;
+    font-size:12px; color:var(--tq); letter-spacing:.06em;
+    transition: opacity .25s;
+  }
+  .worry:hover .worry-tq { opacity:1; }
+
+  /* ─── Compare ─── */
+  .compare-wrap { margin-top:64px; overflow-x:auto; }
+  .compare-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+  .compare-table th, .compare-table td {
+    padding:16px 18px; font-size:13.5px; text-align:center;
+    border-bottom:1px solid rgba(0,0,0,.07);
+    vertical-align:middle; line-height:1.6;
+  }
+  .compare-table thead th {
+    font-family:var(--serif); font-size:12px; letter-spacing:.18em;
+    text-transform:uppercase; padding:20px 18px;
+    border-bottom:2px solid rgba(0,0,0,.12);
+    font-weight:400;
+  }
+  .compare-table thead th.col-nala {
+    background:var(--ink); color:var(--tq);
+  }
+  .compare-table td.col-nala { background:rgba(133,214,208,.05); font-weight:500; }
+  .compare-table tr:last-child td { border-bottom:none; }
+  .compare-table .row-label {
+    text-align:left; color:var(--mist); font-size:13px;
+    font-weight:400; letter-spacing:.03em;
+  }
+  .cmp-o { color:var(--tq); font-size:18px; }
+  .cmp-x { color:#ccc; font-size:18px; }
+  .cmp-tri { color:#f0a500; font-size:16px; }
+  .cmp-val { font-family:var(--serif); font-size:16px; color:var(--ink); }
+  .cmp-val.hi { color:var(--tq); }
+  .cmp-note { font-size:11px; color:var(--fog); display:block; margin-top:2px; }
+
+  /* ─── Flow ─── */
+  .flow-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:64px; position:relative; }
+  .flow-steps::before {
+    content:''; position:absolute; top:36px; left:calc(100%/6); right:calc(100%/6);
+    height:1px; background:rgba(133,214,208,.3); z-index:0;
+  }
+  .flow-step { text-align:center; padding:0 28px; position:relative; z-index:1; }
+  .flow-num {
+    width:72px; height:72px; border-radius:50%;
+    border:1px solid var(--tq); background:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-size:22px; color:var(--tq); font-weight:400;
+    margin:0 auto 24px;
+  }
+  .flow-title {
+    font-family:var(--serif-jp); font-size:16px; font-weight:400;
+    color:var(--ink); letter-spacing:.06em; margin-bottom:12px;
+  }
+  .flow-desc { font-size:13.5px; color:var(--mist); line-height:1.9; }
+  .flow-tag {
+    display:inline-block; margin-top:14px;
+    border:1px solid rgba(133,214,208,.4); padding:4px 14px;
+    font-size:11px; color:var(--tq); letter-spacing:.08em; border-radius:40px;
+  }
+
   /* ─── Responsive ─── */
   @media (max-width:1100px) {
+    .worries-grid { grid-template-columns:repeat(2,1fr); }
+    .flow-steps::before { display:none; }
     .sec { padding:80px 40px; }
     .strip { padding:32px 40px; }
     .hero-content { grid-template-columns:1fr; }
@@ -451,6 +542,9 @@
     .sec { padding:64px 24px; }
     .plans-row { grid-template-columns:1fr 1fr; }
     .rules { grid-template-columns:1fr; }
+    .worries-grid { grid-template-columns:1fr; gap:1px; }
+    .flow-steps { grid-template-columns:1fr; gap:40px; }
+    .compare-table th, .compare-table td { padding:12px 10px; font-size:12px; }
     .cp-block { flex-direction:column; padding:28px; }
     .nav-items { display:none; }
     .strip { flex-wrap:wrap; gap:24px; }
@@ -623,6 +717,53 @@
     <div class="strip-lbl">入会金（オープン記念）</div>
   </div>
 </div>
+
+<!-- WORRIES -->
+<section class="sec">
+  <div class="reveal">
+    <div class="eyebrow">Does this sound familiar?</div>
+    <h2 class="sec-h">こんな<em>悩み</em>、ありませんか？</h2>
+    <p class="sec-lead">ゴルフをもっと楽しみたいのに、なかなか続けられない。NalaGOLFはそのすべてを解決します。</p>
+  </div>
+  <div class="worries-grid">
+    <div class="worry reveal d1">
+      <div class="worry-num">01</div>
+      <div class="worry-q">仕事が忙しくて<br>練習する時間がない</div>
+      <p class="worry-a">早朝・深夜・休日関係なく24時間いつでも利用可能。仕事帰りの22時でも、早朝5時でも予約できます。</p>
+      <span class="worry-tq">→ 24時間・365日営業</span>
+    </div>
+    <div class="worry reveal d2">
+      <div class="worry-num">02</div>
+      <div class="worry-q">天気が悪いと<br>練習に行けない</div>
+      <p class="worry-a">屋内シミュレーターなので天候は一切関係なし。雨の日も風の日も、いつでも最高のコンディションでプレイ。</p>
+      <span class="worry-tq">→ 完全屋内・天候無関係</span>
+    </div>
+    <div class="worry reveal d3">
+      <div class="worry-num">03</div>
+      <div class="worry-q">打ちっぱなしでは<br>物足りない</div>
+      <p class="worry-a">GOLFZON製シミュレーターで本物のコースを再現。弾道・スイング解析で、ただ打つだけでなく確実に上達できます。</p>
+      <span class="worry-tq">→ スイング解析搭載</span>
+    </div>
+    <div class="worry reveal d1">
+      <div class="worry-num">04</div>
+      <div class="worry-q">毎回の費用が<br>かさんでしまう</div>
+      <p class="worry-a">月額定額制なので何回行っても追加費用なし。1日2枠まで通い放題。週3回通えば1回あたり数百円台になります。</p>
+      <span class="worry-tq">→ 月額¥5,000〜定額</span>
+    </div>
+    <div class="worry reveal d2">
+      <div class="worry-num">05</div>
+      <div class="worry-q">コースは予約が<br>大変で費用も高い</div>
+      <p class="worry-a">hacomonoのサイトから24時間いつでも予約可能。コースグリーンフィーの数分の1の月額で、毎週コースラウンド感覚を味わえます。</p>
+      <span class="worry-tq">→ ウェブから即予約</span>
+    </div>
+    <div class="worry reveal d3">
+      <div class="worry-num">06</div>
+      <div class="worry-q">一人でも<br>気軽に行けるか不安</div>
+      <p class="worry-a">完全個室・セルフ運営なので、一人でも気兼ねなく集中できます。スタッフ対応不要でQRコードで入退室。</p>
+      <span class="worry-tq">→ 完全個室・一人OK</span>
+    </div>
+  </div>
+</section>
 
 <!-- CONCEPT -->
 <section id="concept" class="sec sec-pale">
@@ -822,6 +963,77 @@
   </div>
 </section>
 
+<!-- COMPARE -->
+<section class="sec sec-pale">
+  <div class="reveal">
+    <div class="eyebrow">Why Nala?</div>
+    <h2 class="sec-h">打ちっぱなしや<br>都度払いと<em>比べてみる</em></h2>
+    <p class="sec-lead">月額定額のNalaGOLFは、通えば通うほどお得。週2回通うだけで打ちっぱなしより安くなります。</p>
+  </div>
+  <div class="compare-wrap reveal">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="text-align:left; width:28%"></th>
+          <th>打ちっぱなし<br><span style="font-size:10px;letter-spacing:.05em;font-family:var(--sans);font-weight:400;color:var(--fog)">（都度払い）</span></th>
+          <th>他社シミュレーター<br><span style="font-size:10px;letter-spacing:.05em;font-family:var(--sans);font-weight:400;color:var(--fog)">（都度払い）</span></th>
+          <th class="col-nala">NalaGOLF<br><span style="font-size:10px;letter-spacing:.05em;font-family:var(--sans);font-weight:400;color:rgba(133,214,208,.7)">（月額定額）</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label">月4回（90分）の費用</td>
+          <td><span class="cmp-val">約¥6,000〜</span><span class="cmp-note">1回¥1,500〜3,000</span></td>
+          <td><span class="cmp-val">約¥18,000〜</span><span class="cmp-note">1回¥4,500〜（90分）</span></td>
+          <td class="col-nala"><span class="cmp-val hi">¥5,000〜</span><span class="cmp-note">何回行っても同額</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">月8回（90分）の費用</td>
+          <td><span class="cmp-val">約¥12,000〜</span></td>
+          <td><span class="cmp-val">約¥36,000〜</span></td>
+          <td class="col-nala"><span class="cmp-val hi">¥5,000〜</span><span class="cmp-note">変わらず定額</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">24時間利用</td>
+          <td><span class="cmp-x">✕</span><span class="cmp-note">営業時間内のみ</span></td>
+          <td><span class="cmp-tri">△</span><span class="cmp-note">施設による</span></td>
+          <td class="col-nala"><span class="cmp-o">○</span><span class="cmp-note">24h・365日</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">スイング解析</td>
+          <td><span class="cmp-x">✕</span></td>
+          <td><span class="cmp-tri">△</span><span class="cmp-note">機種による</span></td>
+          <td class="col-nala"><span class="cmp-o">○</span><span class="cmp-note">GOLFZON搭載</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">コースラウンド体験</td>
+          <td><span class="cmp-x">✕</span></td>
+          <td><span class="cmp-o">○</span></td>
+          <td class="col-nala"><span class="cmp-o">○</span><span class="cmp-note">世界中のコース収録</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">完全個室</td>
+          <td><span class="cmp-x">✕</span><span class="cmp-note">他の客と同じ空間</span></td>
+          <td><span class="cmp-tri">△</span></td>
+          <td class="col-nala"><span class="cmp-o">○</span><span class="cmp-note">完全プライベート</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">ウェブで即予約</td>
+          <td><span class="cmp-x">✕</span><span class="cmp-note">予約不要だが待つ場合も</span></td>
+          <td><span class="cmp-tri">△</span></td>
+          <td class="col-nala"><span class="cmp-o">○</span><span class="cmp-note">hacomonoサイト</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">駐車場</td>
+          <td><span class="cmp-tri">△</span><span class="cmp-note">施設による</span></td>
+          <td><span class="cmp-tri">△</span></td>
+          <td class="col-nala"><span class="cmp-o">○</span><span class="cmp-note">無料・敷地内</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <!-- RULES -->
 <section id="rules" class="sec sec-pale">
   <div class="reveal">
@@ -875,6 +1087,51 @@
   </div>
 </section>
 
+<!-- FLOW -->
+<section class="sec">
+  <div class="reveal">
+    <div class="eyebrow">How to Start</div>
+    <h2 class="sec-h">はじめての方も<br><em>3ステップ</em>で簡単</h2>
+    <p class="sec-lead">会員登録からプレイ開始まで、すべてWebで完結。スタッフ対応は一切不要です。</p>
+  </div>
+  <div class="flow-steps">
+    <div class="flow-step reveal d1">
+      <div class="flow-num">01</div>
+      <div class="flow-title">サイトから会員登録・予約</div>
+      <p class="flow-desc">nalagolf.hacomono.jpから会員登録して、好きな枠を選んで予約するだけ。24時間いつでも操作できます。</p>
+      <span class="flow-tag">PC / スマホ対応</span>
+    </div>
+    <div class="flow-step reveal d2">
+      <div class="flow-num">02</div>
+      <div class="flow-title">QRコードで入室</div>
+      <p class="flow-desc">予約時間になったらQRコードをかざすだけで入室完了。スタッフ不在でも安心の完全セルフ運営です。</p>
+      <span class="flow-tag">スタッフ対応不要</span>
+    </div>
+    <div class="flow-step reveal d3">
+      <div class="flow-num">03</div>
+      <div class="flow-title">90分プレイ＆解析</div>
+      <p class="flow-desc">コース選択・練習モードなど自由にプレイ。終了後は弾道データやスイング解析で自分のゴルフを振り返れます。</p>
+      <span class="flow-tag">弾道・スイング解析</span>
+    </div>
+  </div>
+  <div class="cp-block reveal" style="margin-top:56px;">
+    <div>
+      <div class="cp-h">まずは¥1,500の初回体験から</div>
+      <p class="cp-p">入会前に一度体験できます。体験から7日以内の入会で入会金が無料に。</p>
+    </div>
+    <div class="cp-tags">
+      <div class="cp-tag">
+        <div class="cp-tag-v">初回体験<br>¥1,500</div>
+        <div class="cp-tag-l">1人1回限り</div>
+      </div>
+      <div class="cp-tag">
+        <div class="cp-tag-v">体験後7日以内<br>入会金無料</div>
+        <div class="cp-tag-l">通常¥11,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ACCESS -->
 <section id="access" class="sec">
   <div class="reveal">
@@ -896,7 +1153,7 @@
         <div>
           <div class="ai-l">所在地</div>
           <div class="ai-v">〒264-0021<br>千葉市若葉区若松町2372-5-101</div>
-          <div class="ai-n">Rai-On新寮 1F 101号室</div>
+          <div class="ai-n">Maison Rai-On 1階</div>
         </div>
       </div>
       <div class="ai reveal d2">
