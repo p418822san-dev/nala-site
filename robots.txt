@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nalagolf.jp/sitemap.xml
