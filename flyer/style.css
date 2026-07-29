@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+/* ---------- 基本設定 ---------- */
+:root {
+  --main: #9ED4D0;       /* ライトターコイズ：帯・面・区切り線 */
+  --main-tint: #EAF7F6;  /* ターコイズの淡色（背景アクセント用） */
+  --accent: #356060;     /* ディープグリーン：見出し・強調 */
+  --white: #FFFFFF;
+  --bleed: 3mm;
+  --safe: 10mm;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 216mm;
+  height: 303mm;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  color: var(--accent);
+  background: #d9d9d9;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+@page {
+  size: 216mm 303mm;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: none;
+  }
+  .page {
+    box-shadow: none !important;
+  }
+}
+
+/* ---------- ページ全体（塗り足し込み 216×303mm） ---------- */
+.page {
+  position: relative;
+  width: 216mm;
+  height: 303mm;
+  background: var(--white);
+  overflow: hidden;
+  box-shadow: 0 0 12mm rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- 装飾グラフィック ---------- */
+.deco-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.2mm solid var(--main);
+  opacity: 0.55;
+}
+
+.deco-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--main);
+}
+
+/* ================= ① ヘッダーゾーン ================= */
+.header {
+  position: relative;
+  height: 48mm;
+  padding: 13mm var(--safe) 5mm;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.header .logo {
+  width: 31mm;
+  height: auto;
+  display: block;
+}
+
+/* ================= ② メインビジュアル＋キャッチゾーン ================= */
+.hero {
+  position: relative;
+  height: 68mm;
+  padding: 0 13mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--main-tint);
+}
+
+.hero .deco-ring--1 {
+  width: 56mm;
+  height: 56mm;
+  top: -24mm;
+  right: -18mm;
+}
+
+.hero .deco-ring--2 {
+  width: 26mm;
+  height: 26mm;
+  bottom: -11mm;
+  left: -8mm;
+  opacity: 0.4;
+}
+
+.hero .deco-dot--1 {
+  width: 3.2mm;
+  height: 3.2mm;
+  top: 10mm;
+  left: 16mm;
+  opacity: 0.7;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.catch {
+  font-size: 22pt;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.sub-catch {
+  margin-top: 3mm;
+  font-size: 11.5pt;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.open-info {
+  margin-top: 6mm;
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+  flex-wrap: wrap;
+}
+
+.brand-name {
+  font-size: 15pt;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.open-date {
+  font-size: 13pt;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.open-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 11pt;
+  letter-spacing: 0.05em;
+  padding: 2.2mm 5mm;
+  border-radius: 1mm;
+}
+
+/* ================= ③ 推しポイントゾーン ================= */
+.points {
+  height: 68mm;
+  padding: 8mm 13mm;
+}
+
+.points-title {
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 5mm;
+  position: relative;
+}
+
+.points-title::before,
+.points-title::after {
+  content: "";
+  display: inline-block;
+  width: 8mm;
+  height: 0.4mm;
+  background: var(--main);
+  vertical-align: middle;
+  margin: 0 3mm;
+}
+
+.points-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5mm 6mm;
+  height: 48mm;
+}
+
+.point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 3.5mm;
+}
+
+.point-icon {
+  flex: none;
+  width: 12mm;
+  height: 12mm;
+  border-radius: 50%;
+  background: var(--main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.point-icon svg {
+  width: 6.5mm;
+  height: 6.5mm;
+}
+
+.point-text {
+  font-size: 9.5pt;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--accent);
+  padding-top: 1mm;
+}
+
+/* ================= ④ 料金ゾーン ================= */
+.pricing {
+  height: 62mm;
+  padding: 7mm 13mm 5mm;
+  background: var(--main-tint);
+}
+
+.pricing-title {
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 4mm;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5mm;
+  height: 40mm;
+}
+
+.price-card {
+  background: var(--white);
+  border-radius: 1.5mm;
+  padding: 3mm 4mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.price-card .label {
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.price-card .value {
+  font-size: 15pt;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+.price-card .value .unit {
+  font-size: 9pt;
+  font-weight: 500;
+}
+
+.price-card--highlight {
+  background: var(--accent);
+  color: var(--white);
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.price-card--highlight .label {
+  color: var(--white);
+  opacity: 0.9;
+}
+
+.price-card--highlight .value {
+  color: var(--white);
+  font-size: 13pt;
+}
+
+.price-card--highlight .free {
+  font-size: 20pt;
+  font-weight: 700;
+  display: block;
+  margin-top: 0.5mm;
+}
+
+.price-note {
+  margin-top: 3mm;
+  font-size: 9pt;
+  text-align: center;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+/* ================= ⑤ フッターゾーン ================= */
+.footer {
+  height: 57mm;
+  padding: 6mm 13mm 13mm;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6mm;
+}
+
+.footer-info {
+  font-size: 9pt;
+  line-height: 1.7;
+  color: var(--accent);
+}
+
+.footer-info .shop-name {
+  font-size: 12pt;
+  font-weight: 700;
+  margin-bottom: 2mm;
+}
+
+.footer-qr {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2mm;
+}
+
+.footer-qr-box {
+  background: var(--white);
+  border: 0.3mm solid var(--main);
+  padding: 4mm;
+  display: flex;
+}
+
+.footer-qr-box img {
+  width: 28mm;
+  height: 28mm;
+  display: block;
+}
+
+.footer-qr-label {
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--accent);
+}
