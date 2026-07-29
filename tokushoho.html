@@ -172,6 +172,14 @@
     footer { padding:48px 24px 28px; }
   }
   </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18343864231"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18343864231');
+</script>
 </head>
 <body>
 
@@ -276,5 +284,39 @@
   </div>
 </footer>
 
+<script>
+// hacomonoへのリンククリックをコンバージョンとして計測
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href*="hacomono.jp"]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      var url = el.href;
+      var target = el.target;
+      var callbackFired = false;
+
+      // 別タブで開く場合は遷移をブロックしない
+      if (target === '_blank') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18343864231/QLMaCJ_1oNgcEKfPhKtE'
+        });
+        return;
+      }
+
+      // 同じタブで遷移する場合は、送信完了を待ってから遷移
+      e.preventDefault();
+      var go = function () {
+        if (callbackFired) return;
+        callbackFired = true;
+        window.location = url;
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18343864231/QLMaCJ_1oNgcEKfPhKtE',
+        'event_callback': go
+      });
+      // 送信が詰まっても1秒で必ず遷移させる（取りこぼし防止）
+      setTimeout(go, 1000);
+    });
+  });
+});
+</script>
 </body>
 </html>
