@@ -109,6 +109,49 @@
     .footer-top { grid-template-columns:1fr; }
     footer { padding:48px 24px 28px; }
   }
+  
+  /* ─── Legal body ─── */
+  .legal-lead {
+    font-size:13px; color:var(--mist); line-height:1.9;
+    margin-bottom:36px; padding-bottom:24px;
+    border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .legal-body { font-size:15px; line-height:2.0; color:var(--ink2); }
+  .legal-body h2 {
+    font-size:15px; font-weight:700; color:var(--ink);
+    margin:40px 0 14px; padding-left:12px;
+    border-left:3px solid var(--tq); letter-spacing:.02em;
+  }
+  .legal-body h2:first-child { margin-top:0; }
+  .legal-body p { margin-bottom:14px; }
+  .legal-body ul, .legal-body ol { margin:0 0 14px; padding-left:1.5em; }
+  .legal-body li { margin-bottom:8px; }
+  .legal-body ol.num { list-style:decimal; }
+  .legal-table {
+    width:100%; border-collapse:collapse; margin:8px 0 24px; font-size:14px;
+  }
+  .legal-table th, .legal-table td {
+    border:1px solid rgba(0,0,0,.1); padding:14px 16px;
+    text-align:left; vertical-align:top; line-height:1.85;
+  }
+  .legal-table th {
+    width:34%; background:var(--pale); font-weight:500;
+    color:var(--ink2); white-space:nowrap;
+  }
+  .legal-table td ul { margin:0; padding-left:1.2em; }
+  .legal-table td li { margin-bottom:4px; }
+  .legal-sign {
+    margin-top:48px; padding-top:24px;
+    border-top:1px solid rgba(0,0,0,.08);
+    font-size:14px; color:var(--mist); line-height:2;
+  }
+  @media (max-width:700px) {
+    .legal-table, .legal-table tbody, .legal-table tr,
+    .legal-table th, .legal-table td { display:block; width:100%; }
+    .legal-table tr { border:1px solid rgba(0,0,0,.1); margin-bottom:-1px; }
+    .legal-table th { border:0; padding:12px 14px 4px; white-space:normal; }
+    .legal-table td { border:0; padding:0 14px 14px; }
+  }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18343864231"></script>
@@ -148,24 +191,110 @@
 </div>
 
 <div class="content-wrap">
-  <p class="pdf-note">下記に利用規約を掲載しています（2026年5月26日施行）。PDFが表示されない場合は「PDFを開く」ボタンからご覧ください。<br>当施設は右打ち専用打席です。左打ちでのご利用はできません。左打ちの方はご予約前にご注意ください。</p>
-  <div class="pdf-frame-wrap">
-    <iframe
-      class="pdf-frame"
-      src="/riyokiyaku.pdf"
-      title="利用規約">
-    </iframe>
-  </div>
-  <div class="pdf-download">
-    <a href="/riyokiyaku.pdf"
-       target="_blank" rel="noopener" class="btn-pdf">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      PDFを開く（別タブ）
-    </a>
-    <a href="/" class="btn-outline">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      トップページへ戻る
-    </a>
+  <div class="pdf-section">
+    <p class="legal-lead">
+      NalaGOLF（以下、本施設といいます）のご利用に際し、下記の事項を厳守されますようご理解・ご協力をお願い申し上げます。
+    </p>
+
+    <div class="legal-body">
+
+      <h2>第1条</h2>
+      <p>本施設の運営・管理（会員資格の得喪変更、会費・諸費用の収受、会員規約の制定・改廃等の決定手続きを含む）は株式会社Nala（以下、当社といいます）が行います。</p>
+
+      <h2>第2条</h2>
+      <p>本施設に入会できる方は、中学生以上（13歳以上）の方で、各要件を満たし、本施設の趣旨に賛同し本規約を承諾した方とします。また、本施設を利用いただけるのは、医師から運動を禁じられていない方とします。刺青、タトゥー及びこれに類するものが入っている方、暴力団構成員、会員の円滑な施設利用に支障を来す可能性がある方、その他当社が不適当と認める方は、入会資格がありません。また、入会後であってもこれらの事象が判明した時点で退会していただきます。</p>
+      <p>入会する本人が未成年者の場合は、本人と保護者の連名で申込み手続きをとらなければなりません。この場合、保護者は自ら会員になった場合と同様に本規約に基づく責任を本人と連帯して負担するものとします。</p>
+
+      <h2>第3条</h2>
+      <p>本施設に入会する方は所定の入会手続きを行い、当社の承認を得た上、定める入会金・会費等をお支払いいただきます。なお、入会金は以下のとおりとします。</p>
+      <ul>
+        <li>入会金（定価）：11,000円（税込）</li>
+        <li>体験利用から7日以内にご入会の場合：無料</li>
+        <li>グランドオープン記念期間（3ヶ月間）：全員無料</li>
+      </ul>
+
+      <h2>第4条</h2>
+      <p>会員は、本施設の定める入会金を、所定の方法で支払わなければなりません。なお、当該入会金は入会契約締結及び履行のための必要費用であり、一旦納入した入会金は返還しません。</p>
+
+      <h2>第5条</h2>
+      <p>会員は、本施設の定める会費等を所定の方法で支払わなければなりません。会費等の種類、金額、支払期限及び支払方法等は本施設が定めるものとします。（月会費は、会員が本施設の会員資格を有する限り、現実に本施設を利用しない場合も支払い義務が発生します）</p>
+
+      <h2>第6条</h2>
+      <p>当社は、会員が次の各号の一つに該当すると認めた場合は、会員資格の一時停止または除名をすることができます。</p>
+      <ol class="num">
+        <li>本施設の定める会費・諸費用につき、3ヶ月以上滞納したとき。（除名の場合も除名以前の会費・諸費用は全て納入していただきます。）</li>
+        <li>本施設の設備・機材を故意に毀損したとき。</li>
+        <li>本規約、その他当社が定める規則に違反したとき。</li>
+        <li>本施設の名誉や信用を毀損、または秩序を乱したとき。</li>
+        <li>入会書類に虚偽を記載したことが判明したとき。</li>
+        <li>会員として品位を損なうと認められる非行があったとき。</li>
+        <li>伝染病等他人に伝染・感染するおそれのある疾病に罹患したとき。</li>
+        <li>当社の合理的な指示・指導に従わないとき。</li>
+        <li>その他当社が、社会通念に照らし、本施設の会員としてふさわしくないと認めたとき。</li>
+      </ol>
+
+      <h2>第7条</h2>
+      <p>会員は、各月の10日（10日が休館日の場合翌営業日）までに当社に所定の休会届を提出することにより、翌月から休会することができます。当社の事務手続き上、10日を過ぎた場合は翌々月扱いになります。</p>
+      <p>一回の届出による休会期間は1ヶ月から6ヶ月間までとします。休会最終月の10日までに休会期間の延長を希望する場合は、再度休会届を提出することにより延長が可能です。</p>
+
+      <h2>第8条</h2>
+      <p>会員は、各月の10日（10日が休館日の場合翌営業日）までに当社に所定の変更届を提出することにより、翌月から会員プランを変更することができます。10日を過ぎた場合は、当社の事務手続き上、翌々月扱いになります。</p>
+
+      <h2>第9条</h2>
+      <p>会員は、各月の10日（10日が休館日の場合翌営業日）までに当社に所定の退会届を提出することにより、その月末限りで退会することができます。電話等口頭での退会は受け付けません。10日を過ぎた場合は、翌月末日扱いになります。</p>
+      <p>なお、当社が退会届を受領しない限り会費支払義務は発生するものとします。</p>
+
+      <h2>第10条</h2>
+      <p>本施設は、原則として定休日及び季節休業を設けます。また、施設の補修・設備メンテナンス・その他当社の都合により休業することがあります。なお、休業に関するお知らせは原則として2週間前までに施設内及びウェブサイト・予約アプリにて告知します。ただし、緊急工事が必要な場合など緊急の事態が発生した場合には、あらかじめ告知することなく一部または全部の施設を休業することができるものとします。</p>
+
+      <h2>第11条</h2>
+      <p>当社は、次の事由により本施設の一部または全部を閉鎖または臨時休業することができます。</p>
+      <ol class="num">
+        <li>台風その他異常気象、風水火災害、地震、近隣の事故等で本施設の業務遂行に支障があるとき。</li>
+        <li>施設の改造または補修工事実施のとき。</li>
+        <li>法令の制度改廃、行政指導、社会情勢、経済状況の著しい変化があったとき。</li>
+        <li>施設の使用権限が消滅する等運営に影響が生ずる事情が発生したとき。</li>
+        <li>その他閉鎖または臨時休業の必要があると認められるとき。</li>
+      </ol>
+
+      <h2>第12条</h2>
+      <ol class="num">
+        <li>会員は、自己の責任と危険負担において、他の会員と協調して、本施設を利用するものとします。</li>
+        <li>当社は、会員が本施設の利用中に生じた盗難、怪我その他の事故について、当社の責めに帰すべき事由がない限り、責任を負いません。会員同士の本施設内外でのトラブルについても同様とします。</li>
+        <li>会員は、本施設において、技量を超えた行為及び危険行為は行ってはならないものとします。また、当社の事前の書面による承諾なしに、対価を得て他の利用者に対する指導行為を行ってはならないものとします。</li>
+        <li>本施設は無人運営のため、利用中に緊急の事態が発生した場合は、速やかに緊急連絡先へご連絡ください。</li>
+      </ol>
+
+      <h2>第13条（禁止事項・損害賠償）</h2>
+      <ol class="num">
+        <li>会員は、本施設の設備、備品、機材、消耗品その他本施設内の物品を、無断で持ち出し、盗取し、または本来の目的以外に使用してはならないものとします。</li>
+        <li>会員が、故意または過失により、本施設の設備、備品、建物、シミュレーター、センサー、スクリーン、マット、クラブ、ボール、その他物品を破損、汚損、紛失させた場合、当社は当該会員に対し、修理費、交換費、清掃費、その他当社が被った損害の実費を請求できるものとします。</li>
+        <li>前項の行為が悪質であると当社が判断した場合、当社は会員資格の一時停止、除名、利用禁止、損害賠償請求、警察その他関係機関への相談または通報等、必要な措置を講じることができるものとします。</li>
+        <li>当社は、防犯、安全管理、施設管理、規約違反の確認を目的として、防犯カメラ映像、予約履歴、入退室履歴、決済履歴その他必要な記録を確認する場合があります。</li>
+        <li>会員は、会員情報、予約情報、入退室に必要なQRコード、暗証番号その他本施設の利用に必要な情報を、第三者に貸与、譲渡、共有してはならないものとします。これらの情報を第三者が使用した場合であっても、当社は当該会員本人による利用とみなし、当該会員はこれにより生じた一切の責任を負うものとします。</li>
+      </ol>
+
+      <h2>第14条</h2>
+      <p>当社は、本規約の改定及び変更、並びに本規約に基づいて会員が負担すべき諸費用を、社会情勢・経済状況の変動等を参考にして改定することができます。この場合、当社は改定日の1ヶ月以上前までに施設内及びウェブサイト・予約アプリにて会員に告知するものとします。</p>
+
+      <p class="legal-sign">
+        本規約は2026年5月26日より施行します。<br>
+        株式会社Nala<br>
+        〒264-0021 千葉県千葉市若葉区若松町2372-5 Maison Rai-On 101
+      </p>
+
+    </div>
+
+    <div class="pdf-download">
+      <a href="/riyokiyaku.pdf" target="_blank" rel="noopener" class="btn-pdf">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        PDF版を開く（別タブ）
+      </a>
+      <a href="/" class="btn-outline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        トップページへ戻る
+      </a>
+    </div>
   </div>
 </div>
 
