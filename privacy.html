@@ -109,6 +109,49 @@
     .footer-top { grid-template-columns:1fr; }
     footer { padding:48px 24px 28px; }
   }
+  
+  /* ─── Legal body ─── */
+  .legal-lead {
+    font-size:13px; color:var(--mist); line-height:1.9;
+    margin-bottom:36px; padding-bottom:24px;
+    border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .legal-body { font-size:15px; line-height:2.0; color:var(--ink2); }
+  .legal-body h2 {
+    font-size:15px; font-weight:700; color:var(--ink);
+    margin:40px 0 14px; padding-left:12px;
+    border-left:3px solid var(--tq); letter-spacing:.02em;
+  }
+  .legal-body h2:first-child { margin-top:0; }
+  .legal-body p { margin-bottom:14px; }
+  .legal-body ul, .legal-body ol { margin:0 0 14px; padding-left:1.5em; }
+  .legal-body li { margin-bottom:8px; }
+  .legal-body ol.num { list-style:decimal; }
+  .legal-table {
+    width:100%; border-collapse:collapse; margin:8px 0 24px; font-size:14px;
+  }
+  .legal-table th, .legal-table td {
+    border:1px solid rgba(0,0,0,.1); padding:14px 16px;
+    text-align:left; vertical-align:top; line-height:1.85;
+  }
+  .legal-table th {
+    width:34%; background:var(--pale); font-weight:500;
+    color:var(--ink2); white-space:nowrap;
+  }
+  .legal-table td ul { margin:0; padding-left:1.2em; }
+  .legal-table td li { margin-bottom:4px; }
+  .legal-sign {
+    margin-top:48px; padding-top:24px;
+    border-top:1px solid rgba(0,0,0,.08);
+    font-size:14px; color:var(--mist); line-height:2;
+  }
+  @media (max-width:700px) {
+    .legal-table, .legal-table tbody, .legal-table tr,
+    .legal-table th, .legal-table td { display:block; width:100%; }
+    .legal-table tr { border:1px solid rgba(0,0,0,.1); margin-bottom:-1px; }
+    .legal-table th { border:0; padding:12px 14px 4px; white-space:normal; }
+    .legal-table td { border:0; padding:0 14px 14px; }
+  }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18343864231"></script>
@@ -148,24 +191,121 @@
 </div>
 
 <div class="content-wrap">
-  <p class="pdf-note">下記にプライバシーポリシーを掲載しています（2026年7月14日改定）。PDFが表示されない場合は「PDFを開く」ボタンからご覧ください。</p>
-  <div class="pdf-frame-wrap">
-    <iframe
-      class="pdf-frame"
-      src="/privacy.pdf"
-      title="プライバシーポリシー">
-    </iframe>
-  </div>
-  <div class="pdf-download">
-    <a href="/privacy.pdf"
-       target="_blank" rel="noopener" class="btn-pdf">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      PDFを開く（別タブ）
-    </a>
-    <a href="/" class="btn-outline">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      トップページへ戻る
-    </a>
+  <div class="pdf-section">
+    <p class="legal-lead">
+      株式会社Nala（以下「当社」といいます。）は、当社が提供するサービス全般における利用者の個人情報の取扱いについて、以下のとおりプライバシーポリシーを定めます。
+    </p>
+
+    <div class="legal-body">
+
+      <h2>第1条（規約の適用）</h2>
+      <ul>
+        <li>本サービスの利用にあたっての登録手続きは、当社所定の登録フォームにより利用者本人が行うものとします。利用者は登録の際、提示する項目に関して正確な情報を登録するものとします。</li>
+        <li>利用者が登録フォームにおいて必要項目を入力し、登録をした時点で、利用者は本ポリシーの内容に同意したものとします。</li>
+      </ul>
+
+      <h2>第2条（登録個人情報）</h2>
+      <ul>
+        <li>当社は、利用者が登録した個人情報を、個人情報の保護に関する法律その他関係法令に従い適切に取り扱うとともに、厳重に管理します。</li>
+        <li>当社は、個人情報の取扱いに関する苦情および相談に、迅速かつ誠実に対応します。</li>
+        <li>当社は、利用者が登録した個人情報を、次の利用目的の範囲内で利用します。
+          <ul>
+            <li>本サービスに関する登録の受付、本人確認、本サービスの提供、維持、保護および改善のため。</li>
+            <li>本サービスの料金請求および決済処理のため。</li>
+            <li>本サービスに関する案内、お問い合わせ等への対応のため。</li>
+            <li>本サービスに関する当社の規約、ポリシー等に違反する行為への対応のため。</li>
+            <li>本サービスに関する規約等の変更を通知するため。</li>
+            <li>上記の利用目的に付随する目的のため。</li>
+            <li>ダイレクトメール、電子メール等により、当社が有益と判断した商品・サービス情報を案内するため。</li>
+            <li>取得した情報を分析・集計し、商品・サービスの改善等に利用するため。</li>
+          </ul>
+        </li>
+        <li>当社は、事前に利用者本人の承諾を得ることなく個人情報の修正、変更をしないものとします。</li>
+        <li>当社は、法令に基づく場合および利用者本人の同意を得た場合を除き、利用者個人を特定できる個人情報を第三者に開示しないものとします。</li>
+      </ul>
+
+      <h2>第3条（業務委託および決済に伴う情報連携）</h2>
+      <ul>
+        <li>当社は、本サービスの提供に必要な範囲で、会員管理・予約管理および決済受付に関する業務を株式会社hacomonoに委託しています。</li>
+        <li>本サービスの決済処理には、株式会社hacomonoを通じてGMOペイメントゲートウェイ株式会社の決済サービスを利用します。決済に必要な情報は、必要な範囲で同社および関係する金融機関その他の決済事業者に連携されます。</li>
+        <li>金融機関の口座情報等は、利用者が金融機関等の画面に直接入力します。当社は、当該口座情報等を原則として取得・保存しません。</li>
+        <li>当社は、個人情報を取り扱う業務を委託する場合、委託先を適切に選定し、必要かつ適切な監督を行います。</li>
+      </ul>
+
+      <h2>第4条（メールマガジンの配信・配信停止）</h2>
+      <ul>
+        <li>利用者による本サービスの利用登録後、当社は利用者に対して、メールマガジン（関連情報、告知、運営上の事務連絡を含みます。）を配信できるものとします。メールマガジンには、当社の活動等に関する情報のほか、当社または第三者に関する広告・宣伝等が含まれる場合があります。</li>
+        <li>当社は、メールマガジンの配信にあたり、利用者本人が登録した情報のみを使用します。</li>
+        <li>メールマガジンの配信業務を第三者に委託する場合、当社は当該第三者に本ポリシーを遵守させます。</li>
+        <li>利用者は、当社所定の方法により、登録内容の変更またはメールマガジンの配信停止を行うことができます。</li>
+      </ul>
+
+      <h2>第5条（個人情報の開示）</h2>
+      <p>当社は、利用者から個人情報保護法に基づく個人情報の開示を求められた場合、利用者本人からの請求であることを確認した上で、遅滞なく開示します。当該個人情報が存在しない場合は、その旨を通知します。ただし、個人情報保護法その他の法令により当社が開示義務を負わない場合は、この限りではありません。</p>
+
+      <h2>第6条（個人情報の訂正および利用停止）</h2>
+      <p>当社は、利用者から、個人情報が真実でないことを理由として内容の訂正を求められた場合、または、あらかじめ公表された利用目的の範囲を超えて取り扱われていることもしくは偽りその他不正の手段により収集されたことを理由として利用停止を求められた場合、利用者本人からの請求であることを確認した上で遅滞なく必要な調査を行います。その結果に基づき、訂正または利用停止を行い、その旨を利用者に通知します。合理的な理由により訂正または利用停止を行わない場合も、その旨を通知します。</p>
+
+      <h2>第7条（利用者登録解除）</h2>
+      <p>当社は、次のいずれかに該当する場合、利用者の本サービスへの利用登録を事前に通知することなく解除することがあります。</p>
+      <ul>
+        <li>利用者が本サービスの規約に違反した場合。</li>
+        <li>利用者の登録情報に虚偽または過誤がある場合。</li>
+        <li>利用者が登録したメールアドレスが機能していないと当社が判断した場合。</li>
+        <li>利用者が第三者になりすまして利用登録を行った場合。</li>
+        <li>利用者本人による登録情報の利用停止等により、配信したメールが不達となった場合。</li>
+        <li>登録されたメールアドレスについて、第三者から登録した覚えがない旨の苦情が届いた場合。</li>
+        <li>その他、当社が不適当と判断する行為があった場合。</li>
+      </ul>
+
+      <h2>第8条（ウェブサーバーの記録）</h2>
+      <p>当社のウェブサーバーは、利用者のコンピューターのIPアドレスを自動的に収集・記録する場合がありますが、IPアドレスのみで利用者個人を特定するものではありません。利用者自ら個人情報を開示しない限り、利用者は匿名のまま当社ウェブサイトを閲覧できます。</p>
+
+      <h2>第9条（準拠法および管轄裁判所）</h2>
+      <ul>
+        <li>本ポリシーの準拠法は日本国法とします。</li>
+        <li>本ポリシーに関する紛争の第一審の専属的合意管轄裁判所は、東京地方裁判所または東京簡易裁判所とします。</li>
+      </ul>
+
+      <h2>第10条（プライバシーポリシーの変更手続）</h2>
+      <p>当社は、個人情報の取扱いに関する運用状況を適宜見直し、継続的な改善に努めます。必要に応じて本ポリシーを変更し、変更した場合は当社所定の方法で利用者に通知または公表します。</p>
+
+      <h2>免責事項</h2>
+      <p>当社は、法令上免責が認められない場合を除き、次の事項について責任を負いません。</p>
+      <ul>
+        <li>本サービスに関する情報の完全性、正確性、安全性、有用性等。</li>
+        <li>利用者が本サービスから提供されるコンテンツまたは当社配信のメール等によって被った損害。</li>
+        <li>本サービスに関連して利用者間で生じたトラブル。</li>
+        <li>当社ウェブサイトからリンクされた外部ウェブサイトの内容またはサービスに関して生じたトラブル。</li>
+        <li>利用者が使用するコンピューター、回線、ソフトウェア等の環境に基づき生じた損害。</li>
+        <li>本サービスの中断・停止または内容変更によって利用者が受けた損害。</li>
+      </ul>
+
+      <h2>著作権</h2>
+      <ul>
+        <li>本サービスに掲載される文字、写真、映像、音声、マークその他の情報（以下「コンテンツ」といいます。）に関する権利は、当社または正当な権利を有する提供元に帰属します。</li>
+        <li>利用者は、コンテンツに関する権利を侵害する行為をしてはなりません。</li>
+        <li>前項に違反して問題が発生した場合、利用者は自己の費用と責任で解決するものとします。</li>
+      </ul>
+
+      <p class="legal-sign">
+        2026年7月14日 改定<br>
+        株式会社Nala<br>
+        〒264-0021 千葉県千葉市若葉区若松町2372-5 Maison Rai-On 101
+      </p>
+
+    </div>
+
+    <div class="pdf-download">
+      <a href="/privacy.pdf" target="_blank" rel="noopener" class="btn-pdf">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        PDF版を開く（別タブ）
+      </a>
+      <a href="/" class="btn-outline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        トップページへ戻る
+      </a>
+    </div>
   </div>
 </div>
 
